@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 504260499}
   - component: {fileID: 504260498}
   - component: {fileID: 504260501}
+  - component: {fileID: 504260502}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -317,6 +318,20 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &504260502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504260497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8735fd5bc5bba344a178ede67f68e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1435659457}
+  followSpeed: 5
 --- !u!1 &584535955
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,14 +844,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af894810c6dda54b85a5cbc2d74b0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalMovementSpeed: 20
+  horizontalMovementSpeed: 12.5
   forwardMovementSpeed: 10
   forwardMovementSpeedCap: 50
   movementSpeedIncrease: 0.05
-  jumpPower: 3
+  jumpPower: 5
   jumpPowerMultiplier: 2
   crouchTime: 3
-  gravityMultiplier: 2
+  gravityMultiplier: 3
   groundCheck: {fileID: 1391878194}
   terrainLayerMask:
     serializedVersion: 2
