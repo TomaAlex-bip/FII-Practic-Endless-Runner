@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower = 3f;
     [SerializeField] private float jumpPowerMultiplier = 2f;
     [SerializeField] private float crouchTime = 3f;
+    [SerializeField] private float crouchHeight = 0.5f;
 
     [SerializeField] private float gravityMultiplier = 2f;
 
@@ -23,10 +24,12 @@ public class PlayerMovement : MonoBehaviour
     
     private float gravity;
     private float originalStepOffset;
+    private float originalHeight;
     private float jumpHeight;
     private Vector3 velocity;
     private float horizontalMovement;
     private bool isGrounded;
+    private bool isCrouched;
 
     private CharacterController characterController;
 
@@ -37,11 +40,12 @@ public class PlayerMovement : MonoBehaviour
         inputManager = InputManager.Instance;
 
         inputManager.OnJumpInput += Jump;
+        inputManager.OnCrouchInput += Crouch;
         
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
-        
-        
+        originalHeight = characterController.height;
+
     }
 
     private void Start()
@@ -56,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateGravity();
         CheckGrounding();
         UpdateJump();
+        UpdateCrouch();
         MovePlayer();
     }
 
@@ -91,6 +96,28 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(velocity * Time.deltaTime);
     }
     
+    private void Crouch()
+    {
+        if (isCrouched)
+            return;
+
+        isCrouched = true;
+        StartCoroutine(StayInCrouchCoroutine());
+    }
+
+    // change the character controller height if it is crouching
+    private void UpdateCrouch()
+    {
+        if (isCrouched && Math.Abs(characterController.height - crouchHeight) > 0.01f)
+        {
+            characterController.height = crouchHeight;
+        }
+        else if (!isCrouched && Math.Abs(characterController.height - originalHeight) > 0.01f)
+        {
+            characterController.height = originalHeight;
+        }
+    }
+    
     // check if the character is on ground, and if it is, set it's y velocity to
     // a small negative number, so it doesn't levitate
     private void CheckGrounding()
@@ -113,6 +140,12 @@ public class PlayerMovement : MonoBehaviour
             forwardMovementSpeed += movementSpeedIncrease * Time.deltaTime;
             yield return null;
         }
+    }
+
+    private IEnumerator StayInCrouchCoroutine()
+    {
+        yield return new WaitForSeconds(crouchTime);
+        isCrouched = false;
     }
 
 }
