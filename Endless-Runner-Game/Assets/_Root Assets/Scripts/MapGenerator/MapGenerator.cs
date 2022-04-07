@@ -7,15 +7,10 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
+    // TODO: replace with singleton
     [SerializeField] private Transform player;
-    
-    [SerializeField] private int chunksVisibleInFront = 10;
-    [SerializeField] private int chunksVisibleBack = 5;
 
-    [SerializeField] private float minMoveDistanceThreshold = 0.5f;
-
-    [SerializeField] private int chunkStartOffset = 0;
-    [SerializeField] private float chunkSize = 10f;
+    [SerializeField] private MapGeneratorData data;
 
     private readonly Dictionary<int, GameObject> visibleChunks = new Dictionary<int, GameObject>();
 
@@ -39,7 +34,7 @@ public class MapGenerator : MonoBehaviour
     {
         playerPosition = player.position.z;
 
-        if (Mathf.Abs(playerPosition - oldPlayerPosition) >= minMoveDistanceThreshold)
+        if (Mathf.Abs(playerPosition - oldPlayerPosition) >= data.minMoveDistanceThreshold)
         {
             oldPlayerPosition = playerPosition;
             UpdateChunks();
@@ -48,23 +43,22 @@ public class MapGenerator : MonoBehaviour
 
     private void UpdateChunks()
     {
-        currentChunkCoord = Mathf.RoundToInt(playerPosition / chunkSize);
+        currentChunkCoord = Mathf.RoundToInt(playerPosition / data.chunkSize);
 
         // iterate through each allowed current indexes and instantiate, if necessary, the chunk 
-        for (var offset = -chunksVisibleBack; offset <= chunksVisibleInFront; offset++)
+        for (var offset = -data.chunksVisibleBack; offset <= data.chunksVisibleInFront; offset++)
         {
             var inRangeCoord = currentChunkCoord + offset;
 
-            if (!visibleChunks.ContainsKey(inRangeCoord) && inRangeCoord >= chunkStartOffset)
+            if (!visibleChunks.ContainsKey(inRangeCoord) && inRangeCoord >= data.chunkStartOffset)
             {
                 var chunkToSpawn = PoolManagerTerrain.Instance.GetPooledObject();
                 if (chunkToSpawn == null) 
                     continue;
                 
                 chunkToSpawn.transform.parent = transform;
-                chunkToSpawn.transform.localPosition = Vector3.forward * inRangeCoord * chunkSize;
+                chunkToSpawn.transform.localPosition = Vector3.forward * inRangeCoord * data.chunkSize;
                 visibleChunks[inRangeCoord] = chunkToSpawn;
-
             }
         }
 
@@ -72,8 +66,8 @@ public class MapGenerator : MonoBehaviour
         var leftBehindChunks = new List<int>();
         foreach (var chunk in visibleChunks)
         {
-            if (chunk.Key < currentChunkCoord - chunksVisibleBack || 
-                chunk.Key > currentChunkCoord + chunksVisibleInFront)
+            if (chunk.Key < currentChunkCoord - data.chunksVisibleBack || 
+                chunk.Key > currentChunkCoord + data.chunksVisibleInFront)
             {
                 var chunkToDespawn = chunk.Value;
                 // add the chunks in a separate list, because we cannot remove them

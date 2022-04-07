@@ -1,18 +1,118 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private const float GRAVITY = -9.81f;
+    
+    [SerializeField] private float horizontalMovementSpeed = 20f;
+    [SerializeField] private float forwardMovementSpeed = 10f;
+    [SerializeField] private float forwardMovementSpeedCap = 50f;
+    [SerializeField] private float movementSpeedIncrease = 0.05f;
+    [SerializeField] private float jumpPower = 3f;
+    [SerializeField] private float jumpPowerMultiplier = 2f;
+    [SerializeField] private float crouchTime = 3f;
+
+    [SerializeField] private float gravityMultiplier = 2f;
+
+    [SerializeField] private Transform groundCheck;
+
+    [SerializeField] private LayerMask terrainLayerMask;
+    
+    private float gravity;
+    private float originalStepOffset;
+    private float jumpHeight;
+    private Vector3 velocity;
+    private float horizontalMovement;
+    private bool isGrounded;
+
+    private CharacterController characterController;
+
+    private InputManager inputManager;
+    
+    private void Awake()
     {
+        inputManager = InputManager.Instance;
+
+        inputManager.OnJumpInput += Jump;
+        
+        characterController = GetComponent<CharacterController>();
+        originalStepOffset = characterController.stepOffset;
+        
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        jumpHeight = jumpPower;
+        UpdateGravity();
     }
+
+    private void Update()
+    {
+        GetHorizontalInput();
+        UpdateGravity();
+        CheckGrounding();
+        UpdateJump();
+        MovePlayer();
+    }
+
+    private void GetHorizontalInput()
+    {
+        horizontalMovement = inputManager.HorizontalMovement;
+    }
+
+    // move the player forward and sideways
+    private void MovePlayer()
+    {
+        var playerTransform = transform;
+        var move = playerTransform.forward * forwardMovementSpeed + 
+                   playerTransform.right * horizontalMovement * horizontalMovementSpeed;
+        
+        characterController.Move(move * Time.deltaTime);
+    }
+
+    // apply a jump impulse to the player velocity
+    private void Jump()
+    {
+        if (!isGrounded)
+            return;
+        
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        characterController.stepOffset = 0f;
+    }
+
+    // update the velocity on the Y axis after the initial jump impulse
+    private void UpdateJump()
+    {
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
+    }
+    
+    // check if the character is on ground, and if it is, set it's y velocity to
+    // a small negative number, so it doesn't levitate
+    private void CheckGrounding()
+    {
+        // TODO: change to a cube ???
+        isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, terrainLayerMask);
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -1f;
+            characterController.stepOffset = originalStepOffset;
+        }
+    }
+
+    private void UpdateGravity() => gravity = GRAVITY * gravityMultiplier;
+
+    private IEnumerator IncreaseMovementSpeedCoroutine()
+    {
+        while (forwardMovementSpeed < forwardMovementSpeedCap)
+        {
+            forwardMovementSpeed += movementSpeedIncrease * Time.deltaTime;
+            yield return null;
+        }
+    }
+
 }

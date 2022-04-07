@@ -1,10 +1,14 @@
 
+using System;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance { get; private set; }
 
+    public float HorizontalMovement { get; private set; }
+        
     // event for jump
     public delegate void JumpEvent();
     public event JumpEvent OnJumpInput;
@@ -12,17 +16,14 @@ public class InputManager : MonoBehaviour
     // event for crouch
     public delegate void CrouchEvent();
     public event CrouchEvent OnCrouchInput;
-    
-    // event for movement
-    public delegate void MovementEvent(float movement);
-    public event MovementEvent OnMovementInput;
-    
+
     // event for pause
     public delegate void PauseEvent();
     public event PauseEvent OnPauseInput;
     
     private GameInputActions gameInput;
 
+    private bool isMovementInput;
 
     private void Awake()
     {
@@ -39,20 +40,26 @@ public class InputManager : MonoBehaviour
         gameInput.Disable();
     }
 
+
     private void MovementOnStarted()
     {
+        isMovementInput = true;
         print("movement on stared");
     }
     private void MovementOnCanceled()
     {
+        isMovementInput = false;
+        HorizontalMovement = 0f;
         print("movement on canceled");
     }
     private void MovementOnPerformed(float movement)
     {
-        if (OnMovementInput == null)
+        if (!isMovementInput)
+        {
+            HorizontalMovement = 0f;
             return;
-
-        OnMovementInput(movement);
+        }
+        HorizontalMovement = movement;
         print($"movement: {movement}");
     }
 
