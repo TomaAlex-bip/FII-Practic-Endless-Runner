@@ -41,6 +41,7 @@ public class PoolManagerBase : MonoBehaviour
         {
             if (!pooledObjects[randomIndex].activeInHierarchy)
             {
+                pooledObjects[randomIndex].SetActive(true);
                 return pooledObjects[randomIndex];
             }
 
