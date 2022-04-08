@@ -12,7 +12,8 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private MapGeneratorData data;
 
-    private readonly Dictionary<int, GameObject> visibleChunks = new Dictionary<int, GameObject>();
+    private readonly Dictionary<int, GameObject> visibleChunks = 
+        new Dictionary<int, GameObject>();
 
     private float playerPosition;
     private float oldPlayerPosition;
@@ -41,6 +42,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+    [ContextMenu("Update chunks")]
     private void UpdateChunks()
     {
         currentChunkCoord = Mathf.RoundToInt(playerPosition / data.chunkSize);
@@ -52,7 +54,17 @@ public class MapGenerator : MonoBehaviour
 
             if (!visibleChunks.ContainsKey(inRangeCoord) && inRangeCoord >= data.chunkStartOffset)
             {
-                var chunkToSpawn = PoolManagerTerrain.Instance.GetPooledObject();
+                GameObject chunkToSpawn = null;
+                try
+                {
+                    chunkToSpawn = PoolManagerTerrain.Instance.GetPooledObject(0);
+                }
+                catch
+                {
+                    Debug.LogError("Could not generate pool object");
+                    continue;
+                }
+                
                 if (chunkToSpawn == null) 
                     continue;
                 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MapGeneratorData
   m_EditorClassIdentifier: 
   chunksVisibleInFront: 10
-  chunksVisibleBack: 5
+  chunksVisibleBack: 3
   minMoveDistanceThreshold: 0.5
   chunkStartOffset: 0
   chunkSize: 10

@@ -703,7 +703,7 @@ MonoBehaviour:
   - {fileID: 4250632177320777670, guid: 5ff628015302ffd43b1147619c0010e8, type: 3}
   - {fileID: 4250632177320777670, guid: 94adf1fe56d9d4940922bd070d8bc0d1, type: 3}
   - {fileID: 4250632177320777670, guid: 3fd4a0eb75d1bd2458bcc4824f957818, type: 3}
-  sizeOfPool: 50
+  sizeOfPoolPerObject: 30
   poolParent: {fileID: 663967932}
 --- !u!1 &1198004182
 GameObject:
@@ -851,6 +851,7 @@ MonoBehaviour:
   jumpPower: 5
   jumpPowerMultiplier: 2
   crouchTime: 3
+  crouchHeight: 0.5
   gravityMultiplier: 3
   groundCheck: {fileID: 1391878194}
   terrainLayerMask:

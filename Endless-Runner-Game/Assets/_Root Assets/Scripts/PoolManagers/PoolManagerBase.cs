@@ -6,11 +6,11 @@ public class PoolManagerBase : MonoBehaviour
 
     [SerializeField] private List<GameObject> sampleObjects;
 
-    [SerializeField] private int sizeOfPool;
+    [SerializeField] private int sizeOfPoolPerObject;
 
     [SerializeField] private Transform poolParent;
 
-    private List<GameObject> pooledObjects;
+    private Dictionary<int, List<GameObject>> pooledObjects;
 
     
     protected void Init()
@@ -18,68 +18,48 @@ public class PoolManagerBase : MonoBehaviour
         InitializePooledObjects();
     }
     
-    public GameObject GetPooledObject()
+    public GameObject GetPooledObject(int sampleObjectIndex)
     {
-        var randomIndex = Random.Range(0, sizeOfPool);
-
-        var allActive = true;
-        foreach (var obj in pooledObjects)
+        var list = pooledObjects[sampleObjectIndex];
+        foreach (var obj in list)
         {
             if (!obj.activeInHierarchy)
             {
-                allActive = false;
-                break;
+                obj.SetActive(true);
+                return obj;
             }
         }
-
-        if (allActive)
-        {
-            return null;
-        }
-        
-        while (true)
-        {
-            if (!pooledObjects[randomIndex].activeInHierarchy)
-            {
-                pooledObjects[randomIndex].SetActive(true);
-                return pooledObjects[randomIndex];
-            }
-
-            randomIndex = Random.Range(0, sizeOfPool);
-        }
+        return null;
     }
 
     public void SendBackInPool(GameObject targetGo)
     {
-        if (targetGo.activeInHierarchy)
-        {
-            targetGo.transform.parent = poolParent;
-            targetGo.transform.position = Vector3.zero;
-            targetGo.SetActive(false);
-        }
-    }
-
-    public List<GameObject> GetSampleObjects()
-    {
-        return sampleObjects;
+        if (!targetGo.activeInHierarchy) 
+            return;
+        
+        targetGo.transform.parent = poolParent;
+        targetGo.transform.position = Vector3.zero;
+        targetGo.SetActive(false);
     }
 
     private void InitializePooledObjects()
     {
-        pooledObjects = new List<GameObject>();
-        for (var i = 0; i < sizeOfPool; ++i)
+        pooledObjects = new Dictionary<int, List<GameObject>>();
+        for (var sampleObjIndex = 0; sampleObjIndex < sampleObjects.Count; ++sampleObjIndex)
         {
-            var randomIndex = Random.Range(0, sampleObjects.Count);
-            var go = Instantiate(sampleObjects[randomIndex], poolParent);
-            go.SetActive(false);
-            pooledObjects.Add(go);
+            for (var i = 0; i < sizeOfPoolPerObject; ++i)
+            {
+                var go = Instantiate(sampleObjects[sampleObjIndex], poolParent);
+                go.SetActive(false);
+                if (pooledObjects.ContainsKey(sampleObjIndex))
+                {
+                    pooledObjects[sampleObjIndex].Add(go);
+                }
+                else
+                {
+                    pooledObjects.Add(sampleObjIndex, new List<GameObject>(){ go });
+                }
+            }
         }
     }
 }
-
-
-public enum PoolObjectType
-{
-    Obstacle, Terrain, Cloud
-}
-
