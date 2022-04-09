@@ -32,7 +32,7 @@ public class ChunkGenerator
         var noise = Noise.GenerateNoiseValue(noiseSettings, position);
         
         // for debug only
-        Debug.Log($"position: {position} noise: {noise}");
+        // Debug.Log($"position: {position} noise: {noise}");
         noiseCurve.AddKey(position, noise);
         
         var sampleTerrains = terrainSettings.sampleObjects;

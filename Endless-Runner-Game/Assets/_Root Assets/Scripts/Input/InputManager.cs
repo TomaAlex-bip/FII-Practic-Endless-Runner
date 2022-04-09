@@ -1,5 +1,3 @@
-
-using System;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -40,17 +38,21 @@ public class InputManager : MonoBehaviour
         gameInput.Disable();
     }
 
+    public void DisablePlayerControls() => gameInput.Player.Disable();
+    public void EnablePlayerControls() => gameInput.Player.Enable();
+    public void DisableUIControls() => gameInput.UI.Disable();
+    public void EnableUIControls() => gameInput.UI.Enable();
 
     private void MovementOnStarted()
     {
         isMovementInput = true;
-        print("movement on stared");
+        // print("movement on stared");
     }
     private void MovementOnCanceled()
     {
         isMovementInput = false;
         HorizontalMovement = 0f;
-        print("movement on canceled");
+        // print("movement on canceled");
     }
     private void MovementOnPerformed(float movement)
     {
@@ -60,7 +62,7 @@ public class InputManager : MonoBehaviour
             return;
         }
         HorizontalMovement = movement;
-        print($"movement: {movement}");
+        // print($"movement: {movement}");
     }
 
     private void JumpOnPerformed()
@@ -69,7 +71,7 @@ public class InputManager : MonoBehaviour
             return;
 
         OnJumpInput();
-        print("jump on performed");
+        // print("jump on performed");
     }
 
     private void CrouchOnPerformed()
@@ -78,7 +80,7 @@ public class InputManager : MonoBehaviour
             return;
 
         OnCrouchInput();
-        print("crouch on performed");
+        // print("crouch on performed");
     }
 
     private void PauseOnPerformed()
@@ -87,7 +89,7 @@ public class InputManager : MonoBehaviour
             return;
 
         OnPauseInput();
-        print("pause on performed");
+        // print("pause on performed");
     }
 
     private void InitializeInputActions()
