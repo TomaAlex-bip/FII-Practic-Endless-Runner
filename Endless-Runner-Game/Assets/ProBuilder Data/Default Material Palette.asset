@@ -9,11 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e87f552772d36e94da8b4fac8f514cbb, type: 3}
-  m_Name: MapGeneratorData
+  m_Script: {fileID: 11500000, guid: 3f1ca63a91b17724bbd99c8fa67e0180, type: 3}
+  m_Name: Default Material Palette
   m_EditorClassIdentifier: 
-  chunksVisibleInFront: 10
-  chunksVisibleBack: 3
-  minMoveDistanceThreshold: 0.5
-  chunkStartOffset: -5
-  chunkSize: 12
+  array:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

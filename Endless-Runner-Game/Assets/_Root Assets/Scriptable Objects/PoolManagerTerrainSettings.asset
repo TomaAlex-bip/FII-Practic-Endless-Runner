@@ -15,17 +15,26 @@ MonoBehaviour:
   sampleObjects:
   - gameObject: {fileID: 4250632177320777670, guid: 94adf1fe56d9d4940922bd070d8bc0d1, type: 3}
     minSpawnValue: 0
-    maxSpawnValue: 0.2
+    maxSpawnValue: 0.15
   - gameObject: {fileID: 4250632177320777670, guid: e94f7573b5eaa1c438737776fddda75c, type: 3}
-    minSpawnValue: 0.2
-    maxSpawnValue: 0.4
+    minSpawnValue: 0.15
+    maxSpawnValue: 0.3
   - gameObject: {fileID: 4250632177320777670, guid: 2d55d8bc40c41094680cdba69dd39fae, type: 3}
-    minSpawnValue: 0.4
-    maxSpawnValue: 0.6
+    minSpawnValue: 0.3
+    maxSpawnValue: 0.4
   - gameObject: {fileID: 4250632177320777670, guid: 6a0c140578950d84f9fa97d714aec6b8, type: 3}
-    minSpawnValue: 0.6
-    maxSpawnValue: 0.8
+    minSpawnValue: 0.4
+    maxSpawnValue: 0.5
   - gameObject: {fileID: 4250632177320777670, guid: c6761fdede182df48a568bd90475ef7d, type: 3}
-    minSpawnValue: 0.8
-    maxSpawnValue: 1
+    minSpawnValue: 0.5
+    maxSpawnValue: 0.6
+  - gameObject: {fileID: 4250632177320777670, guid: 4e6d42989e93be2419a6542b0bc0911a, type: 3}
+    minSpawnValue: 0.6
+    maxSpawnValue: 0.85
+  - gameObject: {fileID: 4250632177320777670, guid: 9520d5c7460c772409e05cfa8260ad0f, type: 3}
+    minSpawnValue: 0.85
+    maxSpawnValue: 0.9
+  - gameObject: {fileID: 4250632177320777670, guid: 61edf9f3a0042734eaec01d960c47a76, type: 3}
+    minSpawnValue: 0.9
+    maxSpawnValue: 2
   sizeOfPoolPerObject: 30

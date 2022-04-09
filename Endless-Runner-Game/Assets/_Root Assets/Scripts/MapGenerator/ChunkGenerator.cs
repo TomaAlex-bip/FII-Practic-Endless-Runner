@@ -8,7 +8,8 @@ public class ChunkGenerator
     [SerializeField] private NoiseSettings noiseSettings;
     [SerializeField] private PoolManagerTerrainSettings terrainSettings;
 
-    [Header("Noise debug values")]
+    [Header("Noise debug values")] 
+    [SerializeField] private bool debug;
     [SerializeField] private AnimationCurve noiseCurve;
     [SerializeField] private AnimationCurve terrainsCurve;
     [SerializeField] private int[] terrains;
@@ -18,7 +19,8 @@ public class ChunkGenerator
         var chunkIndex = GenerateChunkIndex(position);
         
         // for debug only
-        AppendTerrainType(position, chunkIndex);
+        if(debug)
+            AppendTerrainType(position, chunkIndex);
         
         // TODO: generate obstacles on terrain
         
