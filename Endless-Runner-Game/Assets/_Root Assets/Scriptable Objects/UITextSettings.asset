@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9bcf7fe8e21d54cbbf161cdf70e7f6, type: 3}
   m_Name: UITextSettings
   m_EditorClassIdentifier: 
-  currentScoreString: 'Score: '
+  currentScoreString: 
   currentDistanceString: 'Distance: '
   currentPointsString: 'Points: '
   finalScoreString: 'Final Score: '

@@ -54,14 +54,14 @@ public class UIManager : MonoBehaviour
     public void SetCurrentStats(int score, float distance, int points)
     {
         currentScoreText.text = uiTextSettings.currentScoreString + score.ToString();
-        currentDistanceText.text = uiTextSettings.currentDistanceString + distance.ToString("N2");
+        currentDistanceText.text = $"{uiTextSettings.currentDistanceString}{distance:N1} m";
         currentPointsText.text = uiTextSettings.currentPointsString + points.ToString();
     }
     
     public void SetFinalStats(int score, float distance, int points)
     {
         finalScoreText.text = uiTextSettings.finalScoreString + score.ToString();
-        finalDistanceText.text = uiTextSettings.finalDistanceString + distance.ToString("N2");
+        finalDistanceText.text = $"{uiTextSettings.finalDistanceString}{distance:N2} m";
         finalPointsText.text = uiTextSettings.finalPointsString + points.ToString();
     }
 
