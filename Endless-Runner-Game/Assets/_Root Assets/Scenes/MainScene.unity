@@ -699,11 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8c88543e10e3942a559746407c72ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sampleObjects:
-  - {fileID: 4250632177320777670, guid: 5ff628015302ffd43b1147619c0010e8, type: 3}
-  - {fileID: 4250632177320777670, guid: 94adf1fe56d9d4940922bd070d8bc0d1, type: 3}
-  - {fileID: 4250632177320777670, guid: 3fd4a0eb75d1bd2458bcc4824f957818, type: 3}
-  sizeOfPoolPerObject: 30
+  settings: {fileID: 11400000, guid: c51672a7e4a71644780bb0c4156a3241, type: 2}
   poolParent: {fileID: 663967932}
 --- !u!1 &1198004182
 GameObject:
@@ -848,7 +844,7 @@ MonoBehaviour:
   forwardMovementSpeed: 10
   forwardMovementSpeedCap: 50
   movementSpeedIncrease: 0.05
-  jumpPower: 5
+  jumpPower: 8
   jumpPowerMultiplier: 2
   crouchTime: 3
   crouchHeight: 0.5
@@ -1128,3 +1124,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1435659457}
   data: {fileID: 11400000, guid: 18241a0d56eea0c408a9e1014a69383a, type: 2}
+  chunkGenerator:
+    noiseSettings: {fileID: 11400000, guid: 0049c9390878a3d41a214282e7200caf, type: 2}
+    terrainSettings: {fileID: 11400000, guid: c51672a7e4a71644780bb0c4156a3241, type: 2}
+    noiseCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    terrainsCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    terrains: 0000000000000000000000000000000000000000

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbe691559d3b0b4dae77b964bdba282, type: 3}
+  m_Name: PoolManagerTerrainSettings
+  m_EditorClassIdentifier: 
+  sampleObjects:
+  - gameObject: {fileID: 4250632177320777670, guid: 94adf1fe56d9d4940922bd070d8bc0d1, type: 3}
+    minSpawnValue: 0
+    maxSpawnValue: 0.2
+  - gameObject: {fileID: 4250632177320777670, guid: e94f7573b5eaa1c438737776fddda75c, type: 3}
+    minSpawnValue: 0.2
+    maxSpawnValue: 0.4
+  - gameObject: {fileID: 4250632177320777670, guid: 2d55d8bc40c41094680cdba69dd39fae, type: 3}
+    minSpawnValue: 0.4
+    maxSpawnValue: 0.6
+  - gameObject: {fileID: 4250632177320777670, guid: 6a0c140578950d84f9fa97d714aec6b8, type: 3}
+    minSpawnValue: 0.6
+    maxSpawnValue: 0.8
+  - gameObject: {fileID: 4250632177320777670, guid: c6761fdede182df48a568bd90475ef7d, type: 3}
+    minSpawnValue: 0.8
+    maxSpawnValue: 1
+  sizeOfPoolPerObject: 30

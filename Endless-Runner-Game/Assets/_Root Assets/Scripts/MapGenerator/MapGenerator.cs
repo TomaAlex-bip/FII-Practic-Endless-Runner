@@ -12,6 +12,8 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private MapGeneratorData data;
 
+    [SerializeField] private ChunkGenerator chunkGenerator;
+
     private readonly Dictionary<int, GameObject> visibleChunks = 
         new Dictionary<int, GameObject>();
 
@@ -57,11 +59,11 @@ public class MapGenerator : MonoBehaviour
                 GameObject chunkToSpawn = null;
                 try
                 {
-                    chunkToSpawn = PoolManagerTerrain.Instance.GetPooledObject(0);
+                    chunkToSpawn = chunkGenerator.GenerateChunk(inRangeCoord);
                 }
-                catch
+                catch(Exception e)
                 {
-                    Debug.LogError("Could not generate pool object");
+                    Debug.LogError($"Could not generate pool object: {e.Message}");
                     continue;
                 }
                 

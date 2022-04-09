@@ -42,6 +42,8 @@ public class PoolManagerBase : MonoBehaviour
         targetGo.SetActive(false);
     }
 
+    public int GetNumberOfSampleObjects() => sampleObjects.Count;
+
     private void InitializePooledObjects()
     {
         pooledObjects = new Dictionary<int, List<GameObject>>();
