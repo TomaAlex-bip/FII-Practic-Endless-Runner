@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +25,11 @@ public class UIManager : MonoBehaviour
     [Header("UI Text Settings")]
     [SerializeField] private UITextSettings uiTextSettings;
 
+    [Header("Animations")] 
+    [SerializeField] private float pauseAnimationSpeed = 50f;
+    [SerializeField] private float gameOverAnimationSpeed = 30f;
+    [SerializeField] private float outsidePosition = 2000;
+
     private void Awake()
     {
         InstatiateSingleton();
@@ -36,6 +43,8 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
+        StartCoroutine(
+            UIAnimations.PanelAnimationCoroutine(gameOverPanel, gameOverAnimationSpeed, outsidePosition));
         hudPanel.gameObject.SetActive(false);
         pausePanel.gameObject.SetActive(false);
         gameOverPanel.gameObject.SetActive(true);
@@ -43,12 +52,16 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame()
     {
+        StartCoroutine(
+            UIAnimations.PanelAnimationCoroutine(pausePanel, pauseAnimationSpeed, outsidePosition));
         pausePanel.gameObject.SetActive(true);
     }
 
     public void UnPauseGame()
     {
         pausePanel.gameObject.SetActive(false);
+        StopCoroutine(
+            UIAnimations.PanelAnimationCoroutine(pausePanel, pauseAnimationSpeed, outsidePosition));
     }
 
     public void SetCurrentStats(int score, float distance, int points)
@@ -77,5 +90,7 @@ public class UIManager : MonoBehaviour
             return;
         }
     }
-    
+
+
+
 }

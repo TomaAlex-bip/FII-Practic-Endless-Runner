@@ -2808,6 +2808,9 @@ MonoBehaviour:
   finalDistanceText: {fileID: 1140623132}
   finalPointsText: {fileID: 1099637507}
   uiTextSettings: {fileID: 11400000, guid: c935618be7c4c374ea1205c45a3d121b, type: 2}
+  pauseAnimationSpeed: 70
+  gameOverAnimationSpeed: 40
+  outsidePosition: 1600
 --- !u!1 &1617105445
 GameObject:
   m_ObjectHideFlags: 0
