@@ -7,10 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public int Difficulty  => difficulty;
+    public int MaxDifficulty => maxDifficulty;
+
     // TODO: make player a singleton
     [SerializeField] private GameObject player;
 
-
+    [SerializeField] private float distanceToIncreaseDifficulty = 500f;
+    [SerializeField] private int maxDifficulty = 6;
     [SerializeField] private int pointsMultiplier = 10;
     [SerializeField] private int distanceMultiplier = 1;
 
@@ -19,12 +23,15 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private int points = 0;
     private float distance = 0f;
+    private int difficulty = 1;
 
     private void Awake()
     {
         InstantiateSingleton();
 
         InputManager.Instance.OnPauseInput += PauseGameSwitch;
+
+        difficulty = 1;
     }
 
     private void LateUpdate()
@@ -32,6 +39,8 @@ public class GameManager : MonoBehaviour
         GetPlayerDistance();
         CalculateScore();
         UIManager.Instance.SetCurrentStats(score, distance, points);
+        
+        UpdateDifficulty();
     }
 
     public void GameOver()
@@ -75,6 +84,17 @@ public class GameManager : MonoBehaviour
         {
             distance = 0;
         }
+    }
+
+    private void UpdateDifficulty()
+    {
+        if (Difficulty > maxDifficulty)
+        {
+            difficulty = maxDifficulty;
+            return;
+        }
+
+        difficulty = Mathf.FloorToInt((distanceToIncreaseDifficulty + distance) / distanceToIncreaseDifficulty);
     }
 
     private void InstantiateSingleton()

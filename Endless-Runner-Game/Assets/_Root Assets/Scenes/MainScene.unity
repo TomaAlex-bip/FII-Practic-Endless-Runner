@@ -2800,6 +2800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1435659456}
+  distanceToIncreaseDifficulty: 500
+  maxDifficulty: 6
   pointsMultiplier: 10
   distanceMultiplier: 1
 --- !u!1 &1551861469
