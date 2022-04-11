@@ -3134,7 +3134,7 @@ MonoBehaviour:
   chunkGenerator:
     noiseSettings: {fileID: 11400000, guid: 0049c9390878a3d41a214282e7200caf, type: 2}
     terrainSettings: {fileID: 11400000, guid: c51672a7e4a71644780bb0c4156a3241, type: 2}
-    pointsSpawnChance: 0.643
+    pointsSpawnChance: 0.304
     debug: 0
     noiseCurve:
       serializedVersion: 2
@@ -3424,6 +3424,14 @@ PrefabInstance:
     - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: rotationAngle
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: movementSpeedIncrease
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: forwardMovementSpeedCap
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_Name

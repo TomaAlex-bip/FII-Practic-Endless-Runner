@@ -33,7 +33,7 @@ public class DoorController : MonoBehaviour
 
     private void OpenDoor()
     {
-        print("open door");
+        // print("open door");
         StartCoroutine(OpenLeftDoorCoroutine());
         StartCoroutine(OpenRightDoorCoroutine());
         

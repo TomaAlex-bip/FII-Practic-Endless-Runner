@@ -47,15 +47,15 @@ public class ChunkGenerator
         var obstaclesToBeSpawned = 1;
         if (difficulty <= maxDifficulty / 2)
         {
-            obstaclesToBeSpawned = Random.Range(0, difficulty);
+            obstaclesToBeSpawned = Random.Range(0, difficulty+1);
         }
         else
         {
-            obstaclesToBeSpawned = Random.Range(Mathf.Abs(difficulty - maxDifficulty/2), difficulty);
+            obstaclesToBeSpawned = Random.Range(Mathf.Abs(difficulty - maxDifficulty/2), difficulty+1);
         }
         obstaclesToBeSpawned = Mathf.Min(obstaclesToBeSpawned, obstaclePivotList.Count);
 
-        Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned} difficulty: {difficulty} pivots: {pivots} ");
+        Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned} difficulty: {difficulty} pivots: {obstaclePivotList.Count} ");
 
         while (obstaclesToBeSpawned > 0)
         {

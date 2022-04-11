@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        UpdateMovementSpeed();
         GetHorizontalInput();
         UpdateGravity();
         CheckGrounding();
@@ -152,6 +153,14 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -1f;
             characterController.stepOffset = originalStepOffset;
         }
+    }
+
+    private void UpdateMovementSpeed()
+    {
+        if (forwardMovementSpeed > forwardMovementSpeedCap)
+            return;
+
+        forwardMovementSpeed += movementSpeedIncrease * Time.deltaTime;
     }
 
     private void UpdateGravity() => gravity = GRAVITY * gravityMultiplier;
