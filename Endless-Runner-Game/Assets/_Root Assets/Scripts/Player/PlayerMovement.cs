@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPowerMultiplier = 2f;
     [SerializeField] private float crouchTime = 3f;
     [SerializeField] private float crouchHeight = 0.5f;
+    [SerializeField] private float rotationAngle = 10f;
+    [SerializeField] private float rotationSpeed = 10f;
 
     [SerializeField] private float gravityMultiplier = 2f;
     
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateJump();
         UpdateCrouch();
         MovePlayer();
+        RotatePlayer();
     }
 
     public void StopMovement()
@@ -89,6 +92,12 @@ public class PlayerMovement : MonoBehaviour
                    playerTransform.right * horizontalMovement * horizontalMovementSpeed;
         
         characterController.Move(move * Time.deltaTime);
+    }
+
+    private void RotatePlayer()
+    {
+        var desireRotation = Quaternion.Euler(Vector3.up * horizontalMovement * rotationAngle);
+        transform.rotation = Quaternion.Lerp(transform.rotation, desireRotation, rotationSpeed * Time.deltaTime);
     }
 
     // apply a jump impulse to the player velocity

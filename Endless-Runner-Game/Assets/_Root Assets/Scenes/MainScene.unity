@@ -198,6 +198,7 @@ Transform:
   - {fileID: 1551861470}
   - {fileID: 938394860}
   - {fileID: 446510780}
+  - {fileID: 1742037103}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2936,6 +2937,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617105445}
   m_CullTransparentMesh: 1
+--- !u!1 &1742037102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1742037103}
+  - component: {fileID: 1742037104}
+  m_Layer: 0
+  m_Name: PointsPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1742037103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742037102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 98935091}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1742037104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742037102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2613f30a9e42fab4fb3af6c7fd144761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 6fc6866b3f321134eb767b8f9ee61d8f, type: 2}
+  poolParent: {fileID: 663967932}
 --- !u!1 &1756904837
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,6 +3132,7 @@ MonoBehaviour:
   chunkGenerator:
     noiseSettings: {fileID: 11400000, guid: 0049c9390878a3d41a214282e7200caf, type: 2}
     terrainSettings: {fileID: 11400000, guid: c51672a7e4a71644780bb0c4156a3241, type: 2}
+    pointsSpawnChance: 0.643
     debug: 0
     noiseCurve:
       serializedVersion: 2
@@ -3369,8 +3416,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1295897079}
     m_Modifications:
     - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: forwardMovementSpeed
-      value: 10
+      propertyPath: crouchTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: rotationAngle
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_Name
@@ -3420,9 +3471,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7640326936292332537, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2858142a8d34c34458a1131274ab00f0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}

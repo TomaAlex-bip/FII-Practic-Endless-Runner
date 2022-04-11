@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038a32c61219ae94d8e4dd97c35fa2cb, type: 3}
+  m_Name: PoolManagerPointsSettings
+  m_EditorClassIdentifier: 
+  sampleObjects:
+  - {fileID: 6296091783033398892, guid: 1a3a49f256f64c247975b3f59531ae56, type: 3}
+  - {fileID: 8400155838762437335, guid: da098c51516288840ae9df563401cb29, type: 3}
+  - {fileID: 2280783089495364372, guid: 266f1d532ee2d5143acb43867a4a7be5, type: 3}
+  sizeOfPoolPerObject: 30

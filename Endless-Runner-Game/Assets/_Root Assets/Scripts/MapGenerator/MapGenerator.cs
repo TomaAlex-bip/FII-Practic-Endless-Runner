@@ -57,16 +57,18 @@ public class MapGenerator : MonoBehaviour
 
             if (!visibleChunks.ContainsKey(inRangeCoord) && inRangeCoord >= data.chunkStartOffset)
             {
-                GameObject chunkToSpawn = null;
-                try
-                {
-                    chunkToSpawn = chunkGenerator.GenerateChunk(inRangeCoord);
-                }
-                catch(Exception e)
-                {
-                    Debug.LogError($"Could not generate pool object: {e.Message}");
-                    continue;
-                }
+                // GameObject chunkToSpawn = null;
+                // try
+                // {
+                //     chunkToSpawn = chunkGenerator.GenerateChunk(inRangeCoord);
+                // }
+                // catch(Exception e)
+                // {
+                //     Debug.LogError($"Could not generate pool object: {e.Message}");
+                //     continue;
+                // }
+                
+                var chunkToSpawn = chunkGenerator.GenerateChunk(inRangeCoord);
                 
                 if (chunkToSpawn == null) 
                     continue;

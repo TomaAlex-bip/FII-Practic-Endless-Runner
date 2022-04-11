@@ -7,6 +7,8 @@ public class ChunkGenerator
     [Header("Chunk Generator settings")]
     [SerializeField] private NoiseSettings noiseSettings;
     [SerializeField] private PoolManagerTerrainSettings terrainSettings;
+    [Range(0f, 1f)]
+    [SerializeField] private float pointsSpawnChance = 0.3f;
 
     [Header("Noise debug values")] 
     [SerializeField] private bool debug;
@@ -45,7 +47,7 @@ public class ChunkGenerator
         {
             var obstaclesToBeSpawned = Random.Range(0, obstaclePivotList.Count);
             
-            Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned}");
+            // Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned}");
 
             while (obstaclesToBeSpawned > 0)
             {
@@ -59,8 +61,51 @@ public class ChunkGenerator
                 obstacle.transform.localPosition = Vector3.zero;
                 
                 obstaclePivotList.Remove(obstacleParent);
+
+                if (obstacle.name.Contains("Cubes"))
+                {
+                    var rng = Random.Range(0f, 1f);
+                    if (rng <= pointsSpawnChance)
+                    {
+                        var points = PoolManagerPoints.Instance.GetPooledObject(1);
+                        points.transform.parent = obstacleParent;
+                        points.transform.localPosition = Vector3.zero;
+                    }
+                }
+                else if (obstacle.name.Contains("Laser"))
+                {
+                    var rng = Random.Range(0f, 1f);
+                    if (rng <= pointsSpawnChance)
+                    {
+                        var points = PoolManagerPoints.Instance.GetPooledObject(2);
+                        points.transform.parent = obstacleParent;
+                        points.transform.localPosition = Vector3.zero;
+                    }
+                }
+                else if (obstacle.name.Contains("Door"))
+                {
+                    var rng = Random.Range(0f, 1f);
+                    if (rng <= pointsSpawnChance)
+                    {
+                        var points = PoolManagerPoints.Instance.GetPooledObject(0);
+                        points.transform.parent = obstacleParent;
+                        points.transform.localPosition = Vector3.zero;
+                    }
+                }
             }
         }
+
+        // spawn points on the empty pivots
+        // foreach (var pivot in obstaclePivotList)
+        // {
+        //     var rng = Random.Range(0f, 1f);
+        //     if (rng <= pointsSpawnChance)
+        //     {
+        //         var points = PoolManagerPoints.Instance.GetPooledObject(0);
+        //         points.transform.parent = pivot;
+        //         points.transform.localPosition = Vector3.zero;
+        //     }
+        // }
 
         return chunk;
     }

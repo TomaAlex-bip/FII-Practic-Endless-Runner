@@ -38,7 +38,7 @@ public class PlayerInteractions : MonoBehaviour
             isGameOver = true;
             Debug.LogWarning("Game Over!");
             GameManager.Instance.GameOver();
-            playerMovement.enabled = false;
+            playerMovement.StopMovement();
             
             PlayerAnimations.Instance.FallAnimation();
         }
