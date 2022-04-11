@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float gravityMultiplier = 2f;
 
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform faceHitCheck;
+    [SerializeField] private Transform faceHitPivotNormal;
+    [SerializeField] private Transform faceHitPivotCrouch;
 
     [SerializeField] private LayerMask terrainLayerMask;
     
@@ -61,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounding();
         UpdateJump();
         UpdateCrouch();
+        UpdateFaceHitPosition();
         MovePlayer();
     }
 
@@ -110,10 +114,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isCrouched && Math.Abs(characterController.height - crouchHeight) > 0.01f)
         {
+            characterController.center = Vector3.down * crouchHeight;
             characterController.height = crouchHeight;
         }
         else if (!isCrouched && Math.Abs(characterController.height - originalHeight) > 0.01f)
         {
+            characterController.center = Vector3.zero;
             characterController.height = originalHeight;
         }
     }
@@ -128,6 +134,18 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -1f;
             characterController.stepOffset = originalStepOffset;
+        }
+    }
+
+    private void UpdateFaceHitPosition()
+    {
+        if (isCrouched)
+        {
+            faceHitCheck.position = faceHitPivotCrouch.position;
+        }
+        else
+        {
+            faceHitCheck.position = faceHitPivotNormal.position;
         }
     }
 
