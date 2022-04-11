@@ -3134,7 +3134,8 @@ MonoBehaviour:
   chunkGenerator:
     noiseSettings: {fileID: 11400000, guid: 0049c9390878a3d41a214282e7200caf, type: 2}
     terrainSettings: {fileID: 11400000, guid: c51672a7e4a71644780bb0c4156a3241, type: 2}
-    pointsSpawnChance: 0.304
+    pointsSpawnChance: 0.503
+    powerupSpawnChance: 0.609
     debug: 0
     noiseCurve:
       serializedVersion: 2
@@ -3417,6 +3418,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1295897079}
     m_Modifications:
+    - target: {fileID: 2336811775203960506, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: faceHitGroundLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336811775203960506, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: faceHitObstaclesLayerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: crouchTime
       value: 1

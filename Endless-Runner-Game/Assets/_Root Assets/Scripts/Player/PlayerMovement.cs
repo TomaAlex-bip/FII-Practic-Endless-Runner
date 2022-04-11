@@ -173,13 +173,28 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
     }
+    
+    [ContextMenu("Activate Jump Boost")]
+    public IEnumerator JumpBoostCoroutine(float timer)
+    {
+        jumpHeight = jumpPower * jumpPowerMultiplier;
+        
+        var time = 0f;
+        while (time <= timer)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        jumpHeight = jumpPower;
+    }
 
     private IEnumerator StayInCrouchCoroutine()
     {
         yield return new WaitForSeconds(crouchTime);
         isCrouched = false;
     }
-    
+
     private void InitializeSingleton()
     {
         if (Instance == null)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
@@ -7,8 +8,13 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField] private Transform faceHitPivotNormal;
     [SerializeField] private Transform faceHitPivotCrouch;
 
-    [SerializeField] private LayerMask faceHitLayerMask;
+    [SerializeField] private LayerMask faceHitGroundLayerMask;
+    [SerializeField] private LayerMask faceHitObstaclesLayerMask;
 
+    [SerializeField] private float jumpBoostTimer = 5f;
+    [SerializeField] private float invulnerabilityTimer = 10f;
+
+    [SerializeField] private bool invincible;
     private bool isGameOver;
 
     private PlayerMovement playerMovement;
@@ -21,20 +27,43 @@ public class PlayerInteractions : MonoBehaviour
     private void Update()
     {
         UpdateFaceHitPosition();
+        
         CheckFaceHit();
+        
         if (!isGameOver)
         {
             UpdateAnimations();
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Point"))
+        {
+            GameManager.Instance.AddPoint();
+        }
+
+        if (other.CompareTag("JumpBoost"))
+        {
+            // print("jump boost");
+            StartCoroutine(playerMovement.JumpBoostCoroutine(jumpBoostTimer));
+        }
+
+        if (other.CompareTag("Invulnerability"))
+        {
+            // print("de aia buna");
+            StartCoroutine(InvulnerabilityCoroutine(invulnerabilityTimer));
+        }
+    }
+
 
     private void CheckFaceHit()
     {
-        var hit = Physics.CheckSphere(faceHitCheck.position, 0.45f, faceHitLayerMask);
-        if (hit && !isGameOver)
+        var hitGround = Physics.CheckSphere(faceHitCheck.position, 0.45f, faceHitGroundLayerMask);
+        var hitObstacles = Physics.CheckSphere(faceHitCheck.position, 0.45f, faceHitObstaclesLayerMask);
+        
+        if ((hitGround || (hitObstacles && !invincible)) && !isGameOver)
         {
-            // TODO: GAME OVER!
             isGameOver = true;
             Debug.LogWarning("Game Over!");
             GameManager.Instance.GameOver();
@@ -74,4 +103,19 @@ public class PlayerInteractions : MonoBehaviour
             PlayerAnimations.Instance.JumpAnimation();
         }
     }
+    
+    private IEnumerator InvulnerabilityCoroutine(float timer)
+    {
+        invincible = true;
+        
+        var time = 0f;
+        while (time <= timer)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        invincible = false;
+    }
+    
 }

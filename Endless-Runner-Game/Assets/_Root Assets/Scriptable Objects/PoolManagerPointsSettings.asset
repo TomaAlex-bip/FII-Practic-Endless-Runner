@@ -16,4 +16,6 @@ MonoBehaviour:
   - {fileID: 6296091783033398892, guid: 1a3a49f256f64c247975b3f59531ae56, type: 3}
   - {fileID: 8400155838762437335, guid: da098c51516288840ae9df563401cb29, type: 3}
   - {fileID: 2280783089495364372, guid: 266f1d532ee2d5143acb43867a4a7be5, type: 3}
+  - {fileID: 4073455423868247728, guid: bde95a7a3cf35c6439c27242acf88b30, type: 3}
+  - {fileID: 4073455423868247728, guid: 9abbfbd2de4be8d4893eb82ae4bd1011, type: 3}
   sizeOfPoolPerObject: 30

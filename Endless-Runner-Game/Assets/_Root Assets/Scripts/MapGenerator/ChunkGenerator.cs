@@ -7,8 +7,12 @@ public class ChunkGenerator
     [Header("Chunk Generator settings")]
     [SerializeField] private NoiseSettings noiseSettings;
     [SerializeField] private PoolManagerTerrainSettings terrainSettings;
+    
+    [Header("Spawn chances")]
     [Range(0f, 1f)]
     [SerializeField] private float pointsSpawnChance = 0.3f;
+    [Range(0f, 1f)] 
+    [SerializeField] private float powerupSpawnChance = 0.25f;
 
     [Header("Noise debug values")] 
     [SerializeField] private bool debug;
@@ -55,7 +59,7 @@ public class ChunkGenerator
         }
         obstaclesToBeSpawned = Mathf.Min(obstaclesToBeSpawned, obstaclePivotList.Count);
 
-        Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned} difficulty: {difficulty} pivots: {obstaclePivotList.Count} ");
+        // Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned} difficulty: {difficulty} pivots: {obstaclePivotList.Count} ");
 
         while (obstaclesToBeSpawned > 0)
         {
@@ -102,15 +106,25 @@ public class ChunkGenerator
             }
         }
 
-        //spawn points on the empty pivots
+        //spawn points on the empty pivots, only here can spawn power-ups
         foreach (var pivot in obstaclePivotList)
         {
             var rng = Random.Range(0f, 1f);
             if (rng <= pointsSpawnChance)
             {
-                var points = PoolManagerPoints.Instance.GetPooledObject(0);
-                points.transform.parent = pivot;
-                points.transform.localPosition = Vector3.zero;
+                rng = Random.Range(0f, 1f);
+                if (rng >= powerupSpawnChance)
+                {
+                    var points = PoolManagerPoints.Instance.GetPooledObject(Random.Range(3, 5));
+                    points.transform.parent = pivot;
+                    points.transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    var points = PoolManagerPoints.Instance.GetPooledObject(0);
+                    points.transform.parent = pivot;
+                    points.transform.localPosition = Vector3.zero;
+                }
             }
         }
 
