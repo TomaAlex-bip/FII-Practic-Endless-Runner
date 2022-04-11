@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerInteractions : MonoBehaviour
 {
     [SerializeField] private Transform faceHitCheck;
+    [SerializeField] private Transform faceHitPivotNormal;
+    [SerializeField] private Transform faceHitPivotCrouch;
 
     [SerializeField] private LayerMask faceHitLayerMask;
 
@@ -18,7 +20,12 @@ public class PlayerInteractions : MonoBehaviour
 
     private void Update()
     {
+        UpdateFaceHitPosition();
         CheckFaceHit();
+        if (!isGameOver)
+        {
+            UpdateAnimations();
+        }
     }
 
 
@@ -32,6 +39,39 @@ public class PlayerInteractions : MonoBehaviour
             Debug.LogWarning("Game Over!");
             GameManager.Instance.GameOver();
             playerMovement.enabled = false;
+            
+            PlayerAnimations.Instance.FallAnimation();
+        }
+    }
+    
+    private void UpdateFaceHitPosition()
+    {
+        if (playerMovement.IsCrouched)
+        {
+            faceHitCheck.position = faceHitPivotCrouch.position;
+        }
+        else
+        {
+            faceHitCheck.position = faceHitPivotNormal.position;
+        }
+    }
+
+    private void UpdateAnimations()
+    {
+        if (playerMovement.IsGrounded)
+        {
+            if (playerMovement.IsCrouched)
+            {
+                PlayerAnimations.Instance.SlideAnimation();
+            }
+            else
+            {
+                PlayerAnimations.Instance.RunAnimation();
+            }
+        }
+        else
+        {
+            PlayerAnimations.Instance.JumpAnimation();
         }
     }
 }

@@ -3368,29 +3368,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1295897079}
     m_Modifications:
-    - target: {fileID: 2336811775203960506, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: faceHitLayerMask.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: jumpPower
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: crouchTime
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: forwardMovementSpeed
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: horizontalMovementSpeed
-      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_Name
@@ -3440,5 +3420,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7640326936292332537, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2858142a8d34c34458a1131274ab00f0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}

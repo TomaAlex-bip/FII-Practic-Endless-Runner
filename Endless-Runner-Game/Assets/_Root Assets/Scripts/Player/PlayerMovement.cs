@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance { get; private set; }
+
+    public bool IsGrounded => isGrounded;
+    public bool IsCrouched => isCrouched;
+    
     private const float GRAVITY = -9.81f;
     
     [SerializeField] private float horizontalMovementSpeed = 20f;
@@ -17,11 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchHeight = 0.5f;
 
     [SerializeField] private float gravityMultiplier = 2f;
-
+    
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private Transform faceHitCheck;
-    [SerializeField] private Transform faceHitPivotNormal;
-    [SerializeField] private Transform faceHitPivotCrouch;
 
     [SerializeField] private LayerMask terrainLayerMask;
     
@@ -40,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void Awake()
     {
+        InitializeSingleton();
+        
         inputManager = InputManager.Instance;
 
         inputManager.OnJumpInput += Jump;
@@ -64,8 +68,12 @@ public class PlayerMovement : MonoBehaviour
         CheckGrounding();
         UpdateJump();
         UpdateCrouch();
-        UpdateFaceHitPosition();
         MovePlayer();
+    }
+
+    public void StopMovement()
+    {
+        forwardMovementSpeed = 0f;
     }
 
     private void GetHorizontalInput()
@@ -137,18 +145,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void UpdateFaceHitPosition()
-    {
-        if (isCrouched)
-        {
-            faceHitCheck.position = faceHitPivotCrouch.position;
-        }
-        else
-        {
-            faceHitCheck.position = faceHitPivotNormal.position;
-        }
-    }
-
     private void UpdateGravity() => gravity = GRAVITY * gravityMultiplier;
 
     private IEnumerator IncreaseMovementSpeedCoroutine()
@@ -164,6 +160,19 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(crouchTime);
         isCrouched = false;
+    }
+    
+    private void InitializeSingleton()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
 }
