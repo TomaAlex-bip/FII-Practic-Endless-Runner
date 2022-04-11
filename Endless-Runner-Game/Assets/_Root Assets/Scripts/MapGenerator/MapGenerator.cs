@@ -30,6 +30,7 @@ public class MapGenerator : MonoBehaviour
     {
         oldPlayerPosition = player.position.z;
         // initialize the start map
+        InitializeSpawnChunks();
         UpdateChunks();
     }
 
@@ -97,6 +98,17 @@ public class MapGenerator : MonoBehaviour
             visibleChunks.Remove(chunk);
         }
         leftBehindChunks.Clear();
+    }
+
+    private void InitializeSpawnChunks()
+    {
+        for (var i = data.spawnStartOffset; i < data.chunkStartOffset; i++)
+        {
+            var chunkToSpawn = chunkGenerator.GenerateChunk(i, false, 0);
+            chunkToSpawn.transform.parent = transform;
+            chunkToSpawn.transform.localPosition = Vector3.forward * i * data.chunkSize;
+            visibleChunks[i] = chunkToSpawn;
+        }
     }
 
     private void InitializeSingleton()

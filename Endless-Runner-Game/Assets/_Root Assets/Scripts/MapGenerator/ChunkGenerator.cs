@@ -13,18 +13,56 @@ public class ChunkGenerator
     [SerializeField] private AnimationCurve noiseCurve;
     [SerializeField] private AnimationCurve terrainsCurve;
     [SerializeField] private int[] terrains;
-    
-    public GameObject GenerateChunk(int position)
+
+    public GameObject GenerateChunk(int position, bool withObstacles = true, int chunkIndex = -1)
     {
-        var chunkIndex = GenerateChunkIndex(position);
+        if(chunkIndex <= -1 || chunkIndex >= terrainSettings.sampleObjects.Count)
+            chunkIndex = GenerateChunkIndex(position);
         
         // for debug only
-        if(debug)
-            AppendTerrainType(position, chunkIndex);
+        if(debug) AppendTerrainType(position, chunkIndex);
         
-        // TODO: generate obstacles on terrain
+        // TODO: get a difficulty level to know how to spawn obstacles
+        var difficulty = 1;
+
+        var chunk = PoolManagerTerrain.Instance.GetPooledObject(chunkIndex);
+
+        if (!withObstacles)
+            return chunk;
         
-        return PoolManagerTerrain.Instance.GetPooledObject(chunkIndex);
+        var pivots = chunk.transform.childCount;
+        var obstaclePivotList = new List<Transform>();
+        for (var i = 0; i < pivots; i++)
+        {
+            var child = chunk.transform.GetChild(i);
+            if (child.name.Contains("ObstaclePivot"))
+            {
+                obstaclePivotList.Add(child);
+            }
+        }
+
+        if (difficulty <= 3)
+        {
+            var obstaclesToBeSpawned = Random.Range(0, obstaclePivotList.Count);
+            
+            Debug.Log($"obstacles to be spawned: {obstaclesToBeSpawned}");
+
+            while (obstaclesToBeSpawned > 0)
+            {
+                obstaclesToBeSpawned--;
+                
+                var l = PoolManagerObstacles.Instance.SampleObstaclesLength;
+                var obstacle = PoolManagerObstacles.Instance.GetPooledObject(Random.Range(0, l));
+                
+                var obstacleParent = obstaclePivotList[Random.Range(0, obstaclePivotList.Count)];
+                obstacle.transform.parent = obstacleParent;
+                obstacle.transform.localPosition = Vector3.zero;
+                
+                obstaclePivotList.Remove(obstacleParent);
+            }
+        }
+
+        return chunk;
     }
 
     private int GenerateChunkIndex(int position)

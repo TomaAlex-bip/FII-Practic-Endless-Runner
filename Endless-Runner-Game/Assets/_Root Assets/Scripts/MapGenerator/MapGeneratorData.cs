@@ -9,5 +9,6 @@ public class MapGeneratorData : ScriptableObject
     public int chunksVisibleBack = 5;
     public float minMoveDistanceThreshold = 0.5f;
     public int chunkStartOffset = 0;
+    public int spawnStartOffset = 0;
     public float chunkSize = 10f;
 }

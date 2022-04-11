@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManagerTerrain : MonoBehaviour
+public class PoolManagerObstacles : MonoBehaviour
 {
-    public static PoolManagerTerrain Instance { get; private set; }
+    public static PoolManagerObstacles Instance { get; private set; }
+    
+    public int SampleObstaclesLength { get => settings.sampleObjects.Count; }
 
-    [SerializeField] private PoolManagerTerrainSettings settings;
+    [SerializeField] private PoolManagerObstacleSettings settings;
     [SerializeField] private Transform poolParent;
 
     private Dictionary<int, List<GameObject>> pooledObjects;
@@ -31,7 +33,7 @@ public class PoolManagerTerrain : MonoBehaviour
             }
         }
         // create a new GameObject if requested and none is available, and put it in the objects pool
-        var newGo = Instantiate(settings.sampleObjects[sampleObjectIndex].gameObject, poolParent);
+        var newGo = Instantiate(settings.sampleObjects[sampleObjectIndex], poolParent);
         pooledObjects[sampleObjectIndex].Add(newGo);
         return newGo;
     }

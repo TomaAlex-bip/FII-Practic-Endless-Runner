@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: FaceHitCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -42,7 +42,7 @@ GameObject:
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 2336811775203960506}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,20 +202,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880843896916654238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af894810c6dda54b85a5cbc2d74b0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalMovementSpeed: 12.5
+  horizontalMovementSpeed: 10
   forwardMovementSpeed: 10
   forwardMovementSpeedCap: 50
   movementSpeedIncrease: 0.05
-  jumpPower: 8
+  jumpPower: 7
   jumpPowerMultiplier: 2
   crouchTime: 3
   crouchHeight: 0.5
-  gravityMultiplier: 3
+  gravityMultiplier: 2
   groundCheck: {fileID: 4880843896797377644}
   terrainLayerMask:
     serializedVersion: 2

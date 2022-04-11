@@ -15,5 +15,6 @@ MonoBehaviour:
   chunksVisibleInFront: 10
   chunksVisibleBack: 3
   minMoveDistanceThreshold: 0.5
-  chunkStartOffset: -5
+  chunkStartOffset: 5
+  spawnStartOffset: -2
   chunkSize: 12

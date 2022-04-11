@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 546439841253170255}
   - component: {fileID: 2466064214017667169}
   - component: {fileID: 72776201689528047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lasers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72776201689528046}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.3, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 1237495439590834094}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4963082252430664892, guid: 1258c1e224abc3349a9555f6c3a7fee0, type: 3}
+  - {fileID: 2100000, guid: c9c02d3f62fa9ec4c9b9f5323c597661, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 883319707207487372}
   - component: {fileID: 3284314599913083476}
   - component: {fileID: 720707777858497522}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720707777858497533}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.3, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 1237495439590834094}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1196870247698992409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Laser Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 3358850514163864571}
   - component: {fileID: 3015211756138590931}
   - component: {fileID: 1435095065149820101}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435095065149820100}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.3, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 1237495439590834094}
@@ -283,8 +283,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1379485615425094235, guid: 1258c1e224abc3349a9555f6c3a7fee0, type: 3}
-  - {fileID: 4963082252430664892, guid: 1258c1e224abc3349a9555f6c3a7fee0, type: 3}
+  - {fileID: 2100000, guid: 49c37093bcd5daa46a576207c412aa39, type: 2}
+  - {fileID: 2100000, guid: c9c02d3f62fa9ec4c9b9f5323c597661, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -329,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237495439590834094}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902673154292737300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6369392487868351426}
