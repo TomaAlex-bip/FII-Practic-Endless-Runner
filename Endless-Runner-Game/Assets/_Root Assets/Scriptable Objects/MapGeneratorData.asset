@@ -18,3 +18,4 @@ MonoBehaviour:
   chunkStartOffset: 5
   spawnStartOffset: -2
   chunkSize: 12
+  decorationSize: 50

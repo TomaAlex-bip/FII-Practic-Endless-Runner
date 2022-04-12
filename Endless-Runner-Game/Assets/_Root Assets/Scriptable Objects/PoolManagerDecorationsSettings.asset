@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3ced1a1e870ae64eb0860f13a0eabf5, type: 3}
+  m_Name: PoolManagerDecorationsSettings
+  m_EditorClassIdentifier: 
+  sampleObjects:
+  - {fileID: 6084429215527382806, guid: f877a0aa15c814446a97470b3db6206b, type: 3}
+  - {fileID: 6084429215527382806, guid: 5ca46174cc5b1e0428eacbe9f7eda934, type: 3}
+  - {fileID: 6084429215527382806, guid: 1563518b34813d344b527a63249df3c8, type: 3}
+  - {fileID: 9146022887859818099, guid: 912ef054f18d713449df2a282669db93, type: 3}
+  - {fileID: 2531044292880105194, guid: 5d6f4a1af1641c244b41ee9efc53550c, type: 3}
+  - {fileID: 2531044292880105194, guid: 5d6f4a1af1641c244b41ee9efc53550c, type: 3}
+  sizeOfPoolPerObject: 10

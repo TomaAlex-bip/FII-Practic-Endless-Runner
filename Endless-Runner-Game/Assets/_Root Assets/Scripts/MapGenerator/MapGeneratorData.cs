@@ -11,4 +11,8 @@ public class MapGeneratorData : ScriptableObject
     public int chunkStartOffset = 0;
     public int spawnStartOffset = 0;
     public float chunkSize = 10f;
+    
+    public int decorationsVisibleInFront = 5;
+    public int decorationsVisibleBack = 2;
+    public float decorationSize = 20f;
 }
