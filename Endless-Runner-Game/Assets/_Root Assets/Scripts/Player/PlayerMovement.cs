@@ -178,15 +178,19 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator JumpBoostCoroutine(float timer)
     {
         jumpHeight = jumpPower * jumpPowerMultiplier;
+        UIManager.Instance.SetJumpBoostSliderValue(1f);
         
         var time = 0f;
         while (time <= timer)
         {
             time += Time.deltaTime;
+            var sliderValue = 1f - time / timer;
+            UIManager.Instance.SetJumpBoostSliderValue(sliderValue);
             yield return null;
         }
 
         jumpHeight = jumpPower;
+        UIManager.Instance.SetJumpBoostSliderValue(0f);
     }
 
     private IEnumerator StayInCrouchCoroutine()

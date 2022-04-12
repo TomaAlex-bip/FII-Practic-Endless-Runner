@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text finalDistanceText;
     [SerializeField] private Text finalPointsText;
 
+    [Header("Power-up Timers")] 
+    [SerializeField] private Slider jumpBoostSlider;
+    [SerializeField] private Slider invulnerabilitySlider;
+    
     [Header("UI Text Settings")]
     [SerializeField] private UITextSettings uiTextSettings;
 
@@ -76,6 +80,16 @@ public class UIManager : MonoBehaviour
         finalScoreText.text = uiTextSettings.finalScoreString + score.ToString();
         finalDistanceText.text = $"{uiTextSettings.finalDistanceString}{distance:N2} m";
         finalPointsText.text = uiTextSettings.finalPointsString + points.ToString();
+    }
+
+    public void SetJumpBoostSliderValue(float value)
+    {
+        jumpBoostSlider.value = value;
+    }
+    
+    public void SetInvulnerabilitySliderValue(float value)
+    {
+        invulnerabilitySlider.value = value;
     }
 
     private void InstatiateSingleton()

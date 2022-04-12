@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         InputManager.Instance.DisablePlayerControls();
         InputManager.Instance.DisableUIControls();
         UIManager.Instance.GameOver();
+        UIManager.Instance.SetFinalStats(score, distance, points);
     }
 
     public void PauseGameSwitch()

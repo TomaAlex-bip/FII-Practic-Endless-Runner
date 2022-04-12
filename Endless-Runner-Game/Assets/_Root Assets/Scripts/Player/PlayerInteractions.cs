@@ -114,16 +114,22 @@ public class PlayerInteractions : MonoBehaviour
     {
         invincible = true;
         shield.SetActive(true);
+        UIManager.Instance.SetInvulnerabilitySliderValue(1f);
         
         var time = 0f;
         while (time <= timer)
         {
             time += Time.deltaTime;
+
+            var sliderValue = 1f - time / invulnerabilityTimer;
+            UIManager.Instance.SetInvulnerabilitySliderValue(sliderValue);
+            
             yield return null;
         }
 
         invincible = false;
         shield.SetActive(false);
+        UIManager.Instance.SetInvulnerabilitySliderValue(0f);
     }
     
 }
