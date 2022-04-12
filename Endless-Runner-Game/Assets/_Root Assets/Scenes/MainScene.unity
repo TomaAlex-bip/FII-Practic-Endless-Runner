@@ -3591,34 +3591,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1295897079}
     m_Modifications:
-    - target: {fileID: 2336811775203960506, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: faceHitGroundLayerMask.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2336811775203960506, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: faceHitObstaclesLayerMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: crouchTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: rotationAngle
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: jumpPowerMultiplier
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: movementSpeedIncrease
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: forwardMovementSpeedCap
-      value: 20
-      objectReference: {fileID: 0}
+    - target: {fileID: 194630617808980560, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0ed11b55f2a9cf24d8eaaa269f90d147, type: 2}
     - target: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3665,6 +3641,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654239, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980814564883957446, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

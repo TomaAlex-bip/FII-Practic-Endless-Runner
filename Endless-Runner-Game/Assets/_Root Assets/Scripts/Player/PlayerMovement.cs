@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchHeight = 0.5f;
     [SerializeField] private float rotationAngle = 10f;
     [SerializeField] private float rotationSpeed = 10f;
-
+    [SerializeField] private Transform mesh;
+    
     [SerializeField] private float gravityMultiplier = 2f;
     
     [SerializeField] private Transform groundCheck;
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     private void RotatePlayer()
     {
         var desireRotation = Quaternion.Euler(Vector3.up * horizontalMovement * rotationAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, desireRotation, rotationSpeed * Time.deltaTime);
+        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, desireRotation, rotationSpeed * Time.deltaTime);
     }
 
     // apply a jump impulse to the player velocity
