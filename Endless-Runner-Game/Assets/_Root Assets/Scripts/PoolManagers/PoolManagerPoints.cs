@@ -29,6 +29,12 @@ public class PoolManagerPoints : MonoBehaviour
             if (!obj.activeInHierarchy)
             {
                 obj.SetActive(true);
+
+                for (var i = 0; i < obj.transform.childCount; i++)
+                {
+                    obj.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                
                 return obj;
             }
         }

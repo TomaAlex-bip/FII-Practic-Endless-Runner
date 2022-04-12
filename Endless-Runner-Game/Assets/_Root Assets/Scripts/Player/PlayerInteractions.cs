@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,7 +12,8 @@ public class PlayerInteractions : MonoBehaviour
 
     [SerializeField] private float jumpBoostTimer = 5f;
     [SerializeField] private float invulnerabilityTimer = 10f;
-
+    [SerializeField] private GameObject shield;
+    
     [SerializeField] private bool invincible;
     private bool isGameOver;
 
@@ -41,18 +41,24 @@ public class PlayerInteractions : MonoBehaviour
         if (other.CompareTag("Point"))
         {
             GameManager.Instance.AddPoint();
+            other.gameObject.SetActive(false);
+            ParticlesManager.Instance.InstantiatePointsParticles(other.transform.position);
         }
 
         if (other.CompareTag("JumpBoost"))
         {
             // print("jump boost");
             StartCoroutine(playerMovement.JumpBoostCoroutine(jumpBoostTimer));
+            other.gameObject.SetActive(false);
+            ParticlesManager.Instance.InstantiateJumpBoostParticles(other.transform.position);
         }
 
         if (other.CompareTag("Invulnerability"))
         {
             // print("de aia buna");
             StartCoroutine(InvulnerabilityCoroutine(invulnerabilityTimer));
+            other.gameObject.SetActive(false);
+            ParticlesManager.Instance.InstantiateInvulnerabilityParticles(other.transform.position);
         }
     }
 
@@ -107,6 +113,7 @@ public class PlayerInteractions : MonoBehaviour
     private IEnumerator InvulnerabilityCoroutine(float timer)
     {
         invincible = true;
+        shield.SetActive(true);
         
         var time = 0f;
         while (time <= timer)
@@ -116,6 +123,7 @@ public class PlayerInteractions : MonoBehaviour
         }
 
         invincible = false;
+        shield.SetActive(false);
     }
     
 }

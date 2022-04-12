@@ -199,6 +199,7 @@ Transform:
   - {fileID: 938394860}
   - {fileID: 446510780}
   - {fileID: 1742037103}
+  - {fileID: 1909762649}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3212,6 +3213,52 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1909762648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1909762649}
+  - component: {fileID: 1909762650}
+  m_Layer: 0
+  m_Name: Particles Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1909762649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909762648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 98935091}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1909762650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909762648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4a6a9bf1639f942abad0b70a4f6f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointParticles: {fileID: 2528355902161998749, guid: 9a543b2794964264e9669c779703eef1, type: 3}
+  jumpBoostParticles: {fileID: 2528355902161998749, guid: d40133bf231fe0d448ba26f36a188710, type: 3}
+  invulnerabilityParticles: {fileID: 2528355902161998749, guid: dc9a3831b93065d4f81b4736e41dca4f, type: 3}
 --- !u!1 &1972095411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,6 +3606,10 @@ PrefabInstance:
     - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: rotationAngle
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: jumpPowerMultiplier
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: movementSpeedIncrease
