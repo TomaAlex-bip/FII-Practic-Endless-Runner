@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -67,6 +68,18 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.UnPauseGame();
             Time.timeScale = 1;
         }
+    }
+
+    public void LoadMainMenuScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
     }
 
     public void AddPoint()

@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,7 +21,6 @@ public class CameraMainMenuAnimation : MonoBehaviour
     {
         if (!moving)
         {
-            print("am pornit");
             StartCoroutine(MoveCamera());
         }
     }
@@ -40,14 +37,11 @@ public class CameraMainMenuAnimation : MonoBehaviour
         
         while(Mathf.Abs(Vector3.Distance(transform.position, randomPos)) >= 0.1f)
         {
-            // print(Mathf.Abs(Vector3.Distance(transform.position, randomPos)));
-            
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 randomPos,
                  randomSpeed * Time.deltaTime);
 
-            // print("merge");
             yield return null;
         }
 
