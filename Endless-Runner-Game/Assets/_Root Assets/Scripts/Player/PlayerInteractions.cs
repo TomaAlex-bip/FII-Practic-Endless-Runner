@@ -43,6 +43,7 @@ public class PlayerInteractions : MonoBehaviour
             GameManager.Instance.AddPoint();
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiatePointsParticles(other.transform.position);
+            CameraShake.Instance.Shake(CameraShakeType.Points);
         }
 
         if (other.CompareTag("JumpBoost"))
@@ -51,6 +52,7 @@ public class PlayerInteractions : MonoBehaviour
             StartCoroutine(playerMovement.JumpBoostCoroutine(jumpBoostTimer));
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiateJumpBoostParticles(other.transform.position);
+            CameraShake.Instance.Shake(CameraShakeType.Powerups);
         }
 
         if (other.CompareTag("Invulnerability"))
@@ -59,6 +61,7 @@ public class PlayerInteractions : MonoBehaviour
             StartCoroutine(InvulnerabilityCoroutine(invulnerabilityTimer));
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiateInvulnerabilityParticles(other.transform.position);
+            CameraShake.Instance.Shake(CameraShakeType.Powerups);
         }
     }
 
@@ -76,6 +79,11 @@ public class PlayerInteractions : MonoBehaviour
             playerMovement.StopMovement();
             
             PlayerAnimations.Instance.FallAnimation();
+        }
+
+        if (hitObstacles && invincible)
+        {
+            CameraShake.Instance.Shake(CameraShakeType.Obstacles);
         }
     }
     

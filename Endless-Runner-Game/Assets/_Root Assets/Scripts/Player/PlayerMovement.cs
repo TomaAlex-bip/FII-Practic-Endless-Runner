@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded => isGrounded;
     public bool IsCrouched => isCrouched;
+    public float MovementSpeed => forwardMovementSpeed;
     
     private const float GRAVITY = -9.81f;
     
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationAngle = 10f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Transform mesh;
+    [SerializeField] private Transform sparks;
     
     [SerializeField] private float gravityMultiplier = 2f;
     
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalMovement;
     private bool isGrounded;
     private bool isCrouched;
+    private bool shakedOnGround;
 
     private CharacterController characterController;
 
@@ -69,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         GetHorizontalInput();
         UpdateGravity();
         CheckGrounding();
+        ShakeOnGround();
         UpdateJump();
         UpdateCrouch();
         MovePlayer();
@@ -93,6 +97,20 @@ public class PlayerMovement : MonoBehaviour
                    playerTransform.right * horizontalMovement * horizontalMovementSpeed;
         
         characterController.Move(move * Time.deltaTime);
+    }
+
+    private void ShakeOnGround()
+    {
+        if (isGrounded && !shakedOnGround)
+        {
+            CameraShake.Instance.Shake(CameraShakeType.Jump);
+            shakedOnGround = true;
+        }
+
+        if (!isGrounded)
+        {
+            shakedOnGround = false;
+        }
     }
 
     private void RotatePlayer()
@@ -134,11 +152,19 @@ public class PlayerMovement : MonoBehaviour
         {
             characterController.center = Vector3.down * crouchHeight;
             characterController.height = crouchHeight;
+            if (!sparks.gameObject.activeInHierarchy)
+            {
+                sparks.gameObject.SetActive(true);
+            }
         }
         else if (!isCrouched && Math.Abs(characterController.height - originalHeight) > 0.01f)
         {
             characterController.center = Vector3.zero;
             characterController.height = originalHeight;
+            if (sparks.gameObject.activeInHierarchy)
+            {
+                sparks.gameObject.SetActive(false);
+            }
         }
     }
     
