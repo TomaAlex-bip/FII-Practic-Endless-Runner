@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +20,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text finalDistanceText;
     [SerializeField] private Text finalPointsText;
     [SerializeField] private Text highScoreText;
+
+    [Header("Settings Panel")]
+    [SerializeField] private Transform settingsPanel;
+    [SerializeField] private Slider musicVolumeSlider;
+    [SerializeField] private Slider effectsVolumeSlider;
 
     [Header("Power-up Timers")] 
     [SerializeField] private Slider jumpBoostSlider;
@@ -68,6 +71,14 @@ public class UIManager : MonoBehaviour
         StopCoroutine(
             UIAnimations.PanelAnimationCoroutine(pausePanel, pauseAnimationSpeed, outsidePosition));
     }
+
+    public void OpenSettingsPanel() => settingsPanel.gameObject.SetActive(true);
+    
+    public void CloseSettingsPanel() => settingsPanel.gameObject.SetActive(false);
+
+    public float GetMusicSliderValue() => musicVolumeSlider.value;
+    
+    public float GetEffectsSliderValue() => effectsVolumeSlider.value;
 
     public void SetCurrentStats(int score, float distance, int points)
     {

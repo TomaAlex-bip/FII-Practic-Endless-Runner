@@ -123,7 +123,21 @@ public class AudioManager : MonoBehaviour
 
     private void UpdateSoundsVolume()
     {
-        // TODO: add a SoundSettingsManager
+        var effectsVolume = UIManager.Instance.GetEffectsSliderValue();
+        var musicVolume = UIManager.Instance.GetMusicSliderValue();
+
+        foreach (var sound in sounds)
+        {
+            if (sound.Name[0] == 'e')
+            {
+                sound.Source.volume = effectsVolume;
+            }
+            
+            if (sound.Name[0] == 'm')
+            {
+                sound.Source.volume = musicVolume;
+            }
+        }
     }
 
     private void InitializeSingleton()

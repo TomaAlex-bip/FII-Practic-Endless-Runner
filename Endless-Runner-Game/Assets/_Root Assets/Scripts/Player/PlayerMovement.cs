@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded => isGrounded;
     public bool IsCrouched => isCrouched;
     
-    //TODO: verify for broken forward speed
     [SerializeField] private PlayerMovementSettings settings;
     
     [SerializeField] private Transform mesh;
@@ -27,8 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private float horizontalMovement;
     private float currentForwardSpeed;
-    
-    
+
     private bool isGrounded;
     private bool isCrouched;
     private bool shakedOnGround;

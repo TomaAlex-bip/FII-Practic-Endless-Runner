@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
         InputManager.Instance.DisableUIControls();
         UIManager.Instance.GameOver();
         UIManager.Instance.SetFinalStats(score, distance, points);
+        // TODO: add game over sound
+        AudioManager.Instance.PlaySound(AudioManager.FALL_SOUND);
     }
 
     public void PauseGameSwitch()
