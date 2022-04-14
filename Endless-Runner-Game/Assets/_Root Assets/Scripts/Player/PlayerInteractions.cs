@@ -17,6 +17,8 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField] private bool invincible;
     private bool isGameOver;
 
+    private float invulnerabilityTime;
+
     private PlayerMovement playerMovement;
 
     private void Awake()
@@ -51,7 +53,14 @@ public class PlayerInteractions : MonoBehaviour
         {
             // print("jump boost");
             AudioManager.Instance.PlaySound(AudioManager.POWERUP_COLLECT);
-            StartCoroutine(playerMovement.JumpBoostCoroutine(jumpBoostTimer));
+            if (playerMovement.GetJumpBoostTime() > 0f)
+            {
+                playerMovement.ResetJumpBoostCoroutine();
+            }
+            else
+            {
+                StartCoroutine(playerMovement.JumpBoostCoroutine(jumpBoostTimer));
+            }
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiateJumpBoostParticles(other.transform.position);
             CameraShake.Instance.Shake(CameraShakeType.Powerups);
@@ -61,7 +70,14 @@ public class PlayerInteractions : MonoBehaviour
         {
             // print("de aia buna");
             AudioManager.Instance.PlaySound(AudioManager.POWERUP_COLLECT);
-            StartCoroutine(InvulnerabilityCoroutine(invulnerabilityTimer));
+            if (invulnerabilityTime > 0f)
+            {
+                invulnerabilityTime = 0f;
+            }
+            else
+            {
+                StartCoroutine(InvulnerabilityCoroutine(invulnerabilityTimer));
+            }
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiateInvulnerabilityParticles(other.transform.position);
             CameraShake.Instance.Shake(CameraShakeType.Powerups);
@@ -127,12 +143,12 @@ public class PlayerInteractions : MonoBehaviour
         shield.SetActive(true);
         UIManager.Instance.SetInvulnerabilitySliderValue(1f);
         
-        var time = 0f;
-        while (time <= timer)
+        invulnerabilityTime = 0f;
+        while (invulnerabilityTime <= timer)
         {
-            time += Time.deltaTime;
+            invulnerabilityTime += Time.deltaTime;
 
-            var sliderValue = 1f - time / invulnerabilityTimer;
+            var sliderValue = 1f - invulnerabilityTime / invulnerabilityTimer;
             UIManager.Instance.SetInvulnerabilitySliderValue(sliderValue);
             
             yield return null;
@@ -141,6 +157,7 @@ public class PlayerInteractions : MonoBehaviour
         invincible = false;
         shield.SetActive(false);
         UIManager.Instance.SetInvulnerabilitySliderValue(0f);
+        invulnerabilityTime = 0;
     }
     
 }

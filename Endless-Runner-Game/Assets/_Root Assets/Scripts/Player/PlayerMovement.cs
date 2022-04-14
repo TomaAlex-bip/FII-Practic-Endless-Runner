@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouched;
     private bool shakedOnGround;
 
+    private float jumpBoostTime;
+
     private CharacterController characterController;
 
     private InputManager inputManager;
@@ -80,6 +82,10 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
         RotatePlayer();
     }
+
+    public void ResetJumpBoostCoroutine() => jumpBoostTime = 0f;
+
+    public float GetJumpBoostTime() => jumpBoostTime;
 
     public void StopMovement()
     {
@@ -213,17 +219,18 @@ public class PlayerMovement : MonoBehaviour
         jumpHeight = jumpPower * jumpPowerMultiplier;
         UIManager.Instance.SetJumpBoostSliderValue(1f);
         
-        var time = 0f;
-        while (time <= timer)
+        jumpBoostTime = 0f;
+        while (jumpBoostTime <= timer)
         {
-            time += Time.deltaTime;
-            var sliderValue = 1f - time / timer;
+            jumpBoostTime += Time.deltaTime;
+            var sliderValue = 1f - jumpBoostTime / timer;
             UIManager.Instance.SetJumpBoostSliderValue(sliderValue);
             yield return null;
         }
 
         jumpHeight = jumpPower;
         UIManager.Instance.SetJumpBoostSliderValue(0f);
+        jumpBoostTime = 0;
     }
 
     private IEnumerator StayInCrouchCoroutine()
