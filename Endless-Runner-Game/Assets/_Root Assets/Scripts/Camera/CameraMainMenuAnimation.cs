@@ -32,9 +32,7 @@ public class CameraMainMenuAnimation : MonoBehaviour
         var y = Random.Range(-1f, 1f);
         var randomPos = initialPos + new Vector3(x, y) * maxPosition;
         var randomSpeed = Random.Range(minSpeed, maxSpeed);
-        
-        print(randomPos);
-        
+
         while(Mathf.Abs(Vector3.Distance(transform.position, randomPos)) >= 0.1f)
         {
             transform.position = Vector3.MoveTowards(

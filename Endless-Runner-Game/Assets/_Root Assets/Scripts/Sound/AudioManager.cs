@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
 
     private int stepSounds;
     private int ambientSounds;
+    private int lastAmbientSoundPlayedId = 0;
     
     private void Awake()
     {
@@ -114,9 +115,18 @@ public class AudioManager : MonoBehaviour
                 return;
             }
         }
+
+        var rng = 0;
         
-        var rng = Random.Range(1, ambientSounds);
+        while (rng == lastAmbientSoundPlayedId)
+        {
+            rng = Random.Range(1, ambientSounds+1);
+        }
+
         var ambientSound = $"{AMBIENT_SOUND}{rng}";
+        
+        print(ambientSound);
+        
         currentAmbientalSound = GetSound(ambientSound).Source;
         PlaySound(ambientSound);
     }

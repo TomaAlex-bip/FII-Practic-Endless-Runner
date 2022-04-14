@@ -479,6 +479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.1
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!1 &232847865
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +581,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.1
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!114 &232847869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +932,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.1
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!1 &287790462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,15 +1015,15 @@ MonoBehaviour:
     volume: 0.5
     loop: 0
   - name: m_ambient_sound_1
-    audioClip: {fileID: 8300000, guid: 1f1f0971fc6050c4696469690b1ffdc3, type: 3}
+    audioClip: {fileID: 8300000, guid: f151f0a06b9465c44bbf0df6e620f740, type: 3}
     volume: 0.5
     loop: 0
   - name: m_ambient_sound_2
-    audioClip: {fileID: 8300000, guid: 8cae1c49dd5031e4d897bed8fada15e2, type: 3}
+    audioClip: {fileID: 8300000, guid: bf3f35e026e9e9c4d99c75b8aee9f174, type: 3}
     volume: 0.5
     loop: 0
   - name: m_ambient_sound_3
-    audioClip: {fileID: 8300000, guid: d59a71422ca00754299ec239affc857e, type: 3}
+    audioClip: {fileID: 8300000, guid: dfa3f0264701d8e4da5042b9dd778de8, type: 3}
     volume: 0.5
     loop: 0
 --- !u!1 &344419775
@@ -2425,6 +2431,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.1
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!1 &743299675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +2575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.1
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!114 &766280274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5964,6 +5974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.1
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!114 &2028066632
 MonoBehaviour:
   m_ObjectHideFlags: 0

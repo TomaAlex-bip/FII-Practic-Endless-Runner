@@ -3217,6 +3217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.25
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!114 &158123260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5862,6 +5864,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.25
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!114 &436552079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11634,6 +11638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 1, g: 0.43529412, b: 0.34901962, a: 1}
   hoverSize: 1.25
+  hoverButtonSound: {fileID: 8300000, guid: a5cf500068b543247a5a979fe760cbf1, type: 3}
+  hoverButtonVolume: 0.1
 --- !u!114 &726872698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25473,7 +25479,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4e0973d0a04c55a4cb835a3c7c73be7b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
