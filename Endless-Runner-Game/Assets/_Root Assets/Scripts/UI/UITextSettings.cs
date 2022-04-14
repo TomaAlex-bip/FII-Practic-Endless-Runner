@@ -10,4 +10,6 @@ public class UITextSettings : ScriptableObject
     public string finalScoreString = "Final Score: ";
     public string finalDistanceString = "Distance covered: ";
     public string finalPointsString = "Points collected: ";
+
+    public string highScoreString = "High Score: ";
 }

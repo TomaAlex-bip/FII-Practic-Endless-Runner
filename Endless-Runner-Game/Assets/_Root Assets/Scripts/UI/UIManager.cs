@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text finalScoreText;
     [SerializeField] private Text finalDistanceText;
     [SerializeField] private Text finalPointsText;
+    [SerializeField] private Text highScoreText;
 
     [Header("Power-up Timers")] 
     [SerializeField] private Slider jumpBoostSlider;
@@ -74,12 +75,23 @@ public class UIManager : MonoBehaviour
         currentDistanceText.text = $"{uiTextSettings.currentDistanceString}{distance:N1} m";
         currentPointsText.text = uiTextSettings.currentPointsString + points.ToString();
     }
-    
+
     public void SetFinalStats(int score, float distance, int points)
     {
         finalScoreText.text = uiTextSettings.finalScoreString + score.ToString();
         finalDistanceText.text = $"{uiTextSettings.finalDistanceString}{distance:N2} m";
         finalPointsText.text = uiTextSettings.finalPointsString + points.ToString();
+
+        var highScore = HighScoreSaveManager.GetHighScore();
+        if (score > highScore)
+        {
+            HighScoreSaveManager.SaveHighScore(score);
+            highScoreText.text = uiTextSettings.highScoreString + score;
+        }
+        else
+        {
+            highScoreText.text = uiTextSettings.highScoreString + highScore;
+        }
     }
 
     public void SetJumpBoostSliderValue(float value)
