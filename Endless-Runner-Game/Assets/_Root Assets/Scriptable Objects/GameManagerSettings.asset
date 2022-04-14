@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be3b738b80641b992e5ffecadf04a90, type: 3}
   m_Name: GameManagerSettings
   m_EditorClassIdentifier: 
-  distanceToIncreaseDifficulty: 500
+  distanceToIncreaseDifficulty: 1000
   maxDifficulty: 6
   pointsMultiplier: 10
   distanceMultiplier: 1
