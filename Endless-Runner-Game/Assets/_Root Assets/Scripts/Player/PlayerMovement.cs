@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Transform mesh;
     [SerializeField] private Transform sparks;
+    [SerializeField] private float stepSoundTimer = 0.1f;
     
     [SerializeField] private float gravityMultiplier = 2f;
     
@@ -64,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         jumpHeight = jumpPower;
         UpdateGravity();
+        StartCoroutine(StepSoundCoroutine());
     }
 
     private void Update()
@@ -103,6 +105,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && !shakedOnGround)
         {
+            if (Mathf.Abs(jumpHeight - (jumpPower * jumpPowerMultiplier)) < 0.1f)
+            {
+                AudioManager.Instance.PlaySound(AudioManager.FALL_SOUND);
+                // TODO: verifica sa fie in corutina
+            }
             CameraShake.Instance.Shake(CameraShakeType.Jump);
             shakedOnGround = true;
         }
@@ -235,6 +242,18 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+    }
+
+    private IEnumerator StepSoundCoroutine()
+    {
+        while (true)
+        {
+            if (isGrounded)
+            {
+                AudioManager.Instance.PlayRandomStepSound();
+            }
+            yield return new WaitForSeconds(1/(stepSoundTimer * forwardMovementSpeed));
         }
     }
 

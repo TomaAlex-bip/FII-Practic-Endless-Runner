@@ -26,5 +26,6 @@ public class CameraStartAnimation : MonoBehaviour
         }
         
         InputManager.Instance.EnablePlayerControls();
+        AudioManager.Instance.PlaySound(AudioManager.START_GAME);
     }
 }

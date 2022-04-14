@@ -40,6 +40,7 @@ public class PlayerInteractions : MonoBehaviour
     {
         if (other.CompareTag("Point"))
         {
+            AudioManager.Instance.PlaySound(AudioManager.POINT_COLLECT);
             GameManager.Instance.AddPoint();
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiatePointsParticles(other.transform.position);
@@ -49,6 +50,7 @@ public class PlayerInteractions : MonoBehaviour
         if (other.CompareTag("JumpBoost"))
         {
             // print("jump boost");
+            AudioManager.Instance.PlaySound(AudioManager.POWERUP_COLLECT);
             StartCoroutine(playerMovement.JumpBoostCoroutine(jumpBoostTimer));
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiateJumpBoostParticles(other.transform.position);
@@ -58,6 +60,7 @@ public class PlayerInteractions : MonoBehaviour
         if (other.CompareTag("Invulnerability"))
         {
             // print("de aia buna");
+            AudioManager.Instance.PlaySound(AudioManager.POWERUP_COLLECT);
             StartCoroutine(InvulnerabilityCoroutine(invulnerabilityTimer));
             other.gameObject.SetActive(false);
             ParticlesManager.Instance.InstantiateInvulnerabilityParticles(other.transform.position);
