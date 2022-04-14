@@ -64,7 +64,7 @@ public class ChunkGenerator
         {
             obstaclesToBeSpawned--;
             
-            var l = PoolManagerObstacles.Instance.SampleObstaclesLength;
+            var l = PoolManagerObstacles.Instance.SampleObjectsLength;
             var obstacle = PoolManagerObstacles.Instance.GetPooledObject(Random.Range(0, l));
             
             var obstacleParent = obstaclePivotList[Random.Range(0, obstaclePivotList.Count)];

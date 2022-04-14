@@ -3,20 +3,19 @@ using UnityEngine;
 
 public class PoolManagerBase : MonoBehaviour
 {
-
-    [SerializeField] private List<GameObject> sampleObjects;
-
-    [SerializeField] private int sizeOfPoolPerObject;
-
+    [SerializeField] private PoolManagerObjectsSettings settings;
     [SerializeField] private Transform poolParent;
 
     private Dictionary<int, List<GameObject>> pooledObjects;
 
-    
+    [ContextMenu("Generate pool")]
+
     protected void Init()
     {
         InitializePooledObjects();
     }
+
+    public int SampleObjectsLength { get => settings.sampleObjects.Count; }
     
     public GameObject GetPooledObject(int sampleObjectIndex)
     {
@@ -29,7 +28,10 @@ public class PoolManagerBase : MonoBehaviour
                 return obj;
             }
         }
-        return null;
+        // create a new GameObject if requested and none is available, and put it in the objects pool
+        var newGo = Instantiate(settings.sampleObjects[sampleObjectIndex], poolParent);
+        pooledObjects[sampleObjectIndex].Add(newGo);
+        return newGo;
     }
 
     public void SendBackInPool(GameObject targetGo)
@@ -42,17 +44,15 @@ public class PoolManagerBase : MonoBehaviour
         targetGo.SetActive(false);
     }
 
-    public int GetNumberOfSampleObjects() => sampleObjects.Count;
-
     private void InitializePooledObjects()
     {
         pooledObjects = new Dictionary<int, List<GameObject>>();
-        for (var sampleObjIndex = 0; sampleObjIndex < sampleObjects.Count; ++sampleObjIndex)
+        for (var sampleObjIndex = 0; sampleObjIndex < settings.sampleObjects.Count; ++sampleObjIndex)
         {
-            for (var i = 0; i < sizeOfPoolPerObject; ++i)
+            for (var i = 0; i < settings.sizeOfPoolPerObject; ++i)
             {
-                var go = Instantiate(sampleObjects[sampleObjIndex], poolParent);
-                go.SetActive(false);
+                var go = Instantiate(settings.sampleObjects[sampleObjIndex].gameObject, poolParent);
+                go.gameObject.SetActive(false);
                 if (pooledObjects.ContainsKey(sampleObjIndex))
                 {
                     pooledObjects[sampleObjIndex].Add(go);
@@ -64,4 +64,5 @@ public class PoolManagerBase : MonoBehaviour
             }
         }
     }
+    
 }
