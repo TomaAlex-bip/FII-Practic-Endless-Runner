@@ -4298,9 +4298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4a6a9bf1639f942abad0b70a4f6f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointParticles: {fileID: 2528355902161998749, guid: 9a543b2794964264e9669c779703eef1, type: 3}
-  jumpBoostParticles: {fileID: 2528355902161998749, guid: d40133bf231fe0d448ba26f36a188710, type: 3}
-  invulnerabilityParticles: {fileID: 2528355902161998749, guid: dc9a3831b93065d4f81b4736e41dca4f, type: 3}
+  data: {fileID: 11400000, guid: c8455e95d1a155d438d1ac9df589fc51, type: 2}
 --- !u!1 &1972095411
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,6 +4769,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1295897079}
     m_Modifications:
+    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: bbe55f292de6aa747a2a7b986a6e74a4, type: 2}
     - target: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_Name
       value: Player
