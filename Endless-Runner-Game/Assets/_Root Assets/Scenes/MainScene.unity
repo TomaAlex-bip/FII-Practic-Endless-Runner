@@ -979,8 +979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: e_fall_on_ground
-    audioClip: {fileID: 8300000, guid: ef4b40c1edb98234cb9aac72a748e8df, type: 3}
-    volume: 0.1
+    audioClip: {fileID: 8300000, guid: e548e35bbac733a43b806e7cbb31e791, type: 3}
+    volume: 0.5
     loop: 0
   - name: e_powerup_collect
     audioClip: {fileID: 8300000, guid: fdec1babe148ead4ba70166b336a587b, type: 3}
@@ -5646,8 +5646,8 @@ MonoBehaviour:
   chunkGenerator:
     noiseSettings: {fileID: 11400000, guid: 0049c9390878a3d41a214282e7200caf, type: 2}
     terrainSettings: {fileID: 11400000, guid: c51672a7e4a71644780bb0c4156a3241, type: 2}
-    pointsSpawnChance: 0.503
-    powerupSpawnChance: 0.609
+    pointsSpawnChance: 0.408
+    powerupSpawnChance: 0.338
     debug: 0
     noiseCurve:
       serializedVersion: 2
@@ -6439,10 +6439,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1295897079}
     m_Modifications:
-    - target: {fileID: 4880843896916654236, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: bbe55f292de6aa747a2a7b986a6e74a4, type: 2}
     - target: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
       propertyPath: m_Name
       value: Player

@@ -112,7 +112,7 @@ public class ChunkGenerator
             if (rng <= pointsSpawnChance)
             {
                 rng = Random.Range(0f, 1f);
-                if (rng >= powerupSpawnChance)
+                if (rng <= powerupSpawnChance)
                 {
                     var points = PoolManagerPoints.Instance.GetPooledObject(Random.Range(3, 5));
                     points.transform.parent = pivot;

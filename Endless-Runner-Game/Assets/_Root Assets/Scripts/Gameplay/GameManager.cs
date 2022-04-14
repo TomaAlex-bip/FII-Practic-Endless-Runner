@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
     public int Difficulty  => difficulty;
     public int MaxDifficulty => settings.maxDifficulty;
 
@@ -47,7 +46,6 @@ public class GameManager : MonoBehaviour
         InputManager.Instance.DisableUIControls();
         UIManager.Instance.GameOver();
         UIManager.Instance.SetFinalStats(score, distance, points);
-        // TODO: add game over sound
         AudioManager.Instance.PlaySound(AudioManager.FALL_SOUND);
     }
 

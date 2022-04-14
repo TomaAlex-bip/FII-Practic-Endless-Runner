@@ -242,20 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af894810c6dda54b85a5cbc2d74b0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalMovementSpeed: 7.5
-  forwardMovementSpeed: 10
-  forwardMovementSpeedCap: 20
-  movementSpeedIncrease: 0.03
-  jumpPower: 3
-  jumpPowerMultiplier: 3
-  crouchTime: 1
-  crouchHeight: 0.5
-  rotationAngle: 30
-  rotationSpeed: 30
+  settings: {fileID: 11400000, guid: bbe55f292de6aa747a2a7b986a6e74a4, type: 2}
   mesh: {fileID: 7650032306727083756}
   sparks: {fileID: 4987895483226108811}
-  stepSoundTimer: 0.32
-  gravityMultiplier: 2
   groundCheck: {fileID: 4880843896797377644}
   terrainLayerMask:
     serializedVersion: 2
@@ -556,3 +545,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6d5770e92c48e4f840162d19f815b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialRunningAnimationSpeed: 1.75

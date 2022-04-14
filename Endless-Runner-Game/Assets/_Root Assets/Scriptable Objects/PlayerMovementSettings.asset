@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalMovementSpeed: 7.5
   forwardMovementSpeed: 10
-  forwardMovementSpeedCap: 20
-  movementSpeedIncrease: 0.03
+  forwardMovementSpeedCap: 15
+  movementSpeedIncrease: 0.05
   jumpPower: 3
   jumpPowerMultiplier: 3
   crouchTime: 1

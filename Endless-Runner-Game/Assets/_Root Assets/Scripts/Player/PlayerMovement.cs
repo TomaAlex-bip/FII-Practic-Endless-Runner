@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded => isGrounded;
     public bool IsCrouched => isCrouched;
+    public float CurrentSpeed => currentForwardSpeed;
+    public float InitialSpeed => settings.forwardMovementSpeed;
     
     [SerializeField] private PlayerMovementSettings settings;
     
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isCrouched;
     private bool shakedOnGround;
+    private bool gameOver;
 
     private float jumpBoostTime;
 
@@ -80,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
     public void StopMovement()
     {
         currentForwardSpeed = 0f;
+        gameOver = true;
     }
 
     private void GetHorizontalInput()
@@ -183,6 +187,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMovementSpeed()
     {
+        if (gameOver)
+            return;
+        
         if (currentForwardSpeed > settings.forwardMovementSpeedCap)
             return;
 

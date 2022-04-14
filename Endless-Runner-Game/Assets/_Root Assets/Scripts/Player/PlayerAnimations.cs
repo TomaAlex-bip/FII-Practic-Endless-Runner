@@ -5,6 +5,8 @@ public class PlayerAnimations : MonoBehaviour
 {
     public static PlayerAnimations Instance { get; private set; }
 
+    [SerializeField] private float initialRunningAnimationSpeed = 1.75f;
+    
     // private const string PLAYER_RUN = "Running";
     // private const string PLAYER_JUMP = "Jumping";
     // private const string PLAYER_SLIDE = "Sliding";
@@ -16,6 +18,11 @@ public class PlayerAnimations : MonoBehaviour
     {
         InitializeSingleton();
         animator = GetComponent<Animator>();
+    }
+
+    private void LateUpdate()
+    {
+        UpdateRunningAnimationSpeed();
     }
 
     // public void RunAnimation() => animator.Play(PLAYER_RUN);
@@ -51,6 +58,15 @@ public class PlayerAnimations : MonoBehaviour
     private void SetJumpBool(bool value) => animator.SetBool("jump", value);
     private void SetSlideBool(bool value) => animator.SetBool("slide", value);
     private void FallTrigger() => animator.SetTrigger("fall");
+
+    private void UpdateRunningAnimationSpeed()
+    {
+        var initialSpeed = PlayerMovement.Instance.InitialSpeed;
+        var currentSpeed = PlayerMovement.Instance.CurrentSpeed;
+
+        var currentRunningAnimationSpeed = (currentSpeed * initialRunningAnimationSpeed) / initialSpeed;
+        animator.SetFloat("animationMultiplier", currentRunningAnimationSpeed);
+    }
     
     private void InitializeSingleton()
     {
