@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: 4a304e2fe02540d40b4819a4b9919995
+guid: 9b3f632f353831540bb6624b0e5c727d
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: 4973509963337679389
-    second: Armature.001|aaa
-  - first:
-      74: -211283125524732079
-    second: Armature.001|CrouchIdleAnimation
-  - first:
-      74: 754464383928008127
-    second: Armature.001|CrouchWalkAnimation
-  - first:
-      74: -5302860213623207369
-    second: Armature.001|FallAnimation
-  - first:
-      74: 4344734017345952220
-    second: Armature.001|IdleAnimation
-  - first:
-      74: -6698274293720204379
-    second: Armature.001|JumpAnimation
-  - first:
-      74: 9173700755265287156
-    second: Armature.001|RunAnimation
-  - first:
-      74: -4159483235397064634
-    second: Armature.001|SlideAnimation
-  - first:
-      74: -670393664425206250
-    second: Armature.001|WalkAnimation
-  - first:
-      74: 3282664952005923401
-    second: Armature.001|YeeesAnimation
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Main Material
-    second: {fileID: 2100000, guid: fdf3053ca06890748913a3044c8b4d15, type: 2}
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
