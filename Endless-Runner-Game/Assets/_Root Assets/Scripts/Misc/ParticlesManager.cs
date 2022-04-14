@@ -4,9 +4,7 @@ public class ParticlesManager : MonoBehaviour
 {
     public static ParticlesManager Instance { get; private set; }
 
-    [SerializeField] private GameObject pointParticles;
-    [SerializeField] private GameObject jumpBoostParticles;
-    [SerializeField] private GameObject invulnerabilityParticles;
+    [SerializeField] private ParticlesManagerData data;
 
     private void Awake()
     {
@@ -14,13 +12,13 @@ public class ParticlesManager : MonoBehaviour
     }
 
     public GameObject InstantiatePointsParticles(Vector3 position) =>
-        Instantiate(pointParticles, position, Quaternion.identity);
+        Instantiate(data.pointParticles, position, Quaternion.identity);
     
     public GameObject InstantiateJumpBoostParticles(Vector3 position) =>
-        Instantiate(jumpBoostParticles, position, Quaternion.identity);
+        Instantiate(data.jumpBoostParticles, position, Quaternion.identity);
     
     public GameObject InstantiateInvulnerabilityParticles(Vector3 position) =>
-        Instantiate(invulnerabilityParticles, position, Quaternion.identity);
+        Instantiate(data.invulnerabilityParticles, position, Quaternion.identity);
     
     private void InitializeSingleton()
     {

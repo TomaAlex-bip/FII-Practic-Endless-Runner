@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0becf1961bfb4e2eac3d85bab11332b0, type: 3}
+  m_Name: ParticlesManagerData
+  m_EditorClassIdentifier: 
+  pointParticles: {fileID: 2528355902161998749, guid: 9a543b2794964264e9669c779703eef1, type: 3}
+  jumpBoostParticles: {fileID: 2528355902161998749, guid: d40133bf231fe0d448ba26f36a188710, type: 3}
+  invulnerabilityParticles: {fileID: 2528355902161998749, guid: dc9a3831b93065d4f81b4736e41dca4f, type: 3}

@@ -3675,11 +3675,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408465639}
   m_CullTransparentMesh: 1
---- !u!1 &1435659456 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4880843896916654238, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
-  m_PrefabInstance: {fileID: 4880843897628775518}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1435659457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4880843896916654239, guid: 862116e4f4f354342b9949f5d0030f65, type: 3}
@@ -3728,11 +3723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e38e21fa47a42c48b28b5dbb51b4549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1435659456}
-  distanceToIncreaseDifficulty: 500
-  maxDifficulty: 6
-  pointsMultiplier: 10
-  distanceMultiplier: 1
+  settings: {fileID: 11400000, guid: d7135527dab46954a888c741e6acdfed, type: 2}
 --- !u!1 &1487369921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,7 +4344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39278c58586daab4b8c70c90d486bee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1435659457}
   data: {fileID: 11400000, guid: 18241a0d56eea0c408a9e1014a69383a, type: 2}
   chunkGenerator:
     noiseSettings: {fileID: 11400000, guid: 0049c9390878a3d41a214282e7200caf, type: 2}

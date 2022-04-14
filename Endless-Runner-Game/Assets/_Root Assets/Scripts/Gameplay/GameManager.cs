@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,15 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public int Difficulty  => difficulty;
-    public int MaxDifficulty => maxDifficulty;
+    public int MaxDifficulty => settings.maxDifficulty;
 
-    // TODO: make player a singleton
-    [SerializeField] private GameObject player;
-
-    [SerializeField] private float distanceToIncreaseDifficulty = 500f;
-    [SerializeField] private int maxDifficulty = 6;
-    [SerializeField] private int pointsMultiplier = 10;
-    [SerializeField] private int distanceMultiplier = 1;
+    [SerializeField] private GameManagerSettings settings;
 
     private bool isGameRunning = true;
     
@@ -26,6 +17,8 @@ public class GameManager : MonoBehaviour
     private float distance = 0f;
     private int difficulty = 1;
 
+    private GameObject player;
+    
     private void Awake()
     {
         InstantiateSingleton();
@@ -35,12 +28,16 @@ public class GameManager : MonoBehaviour
         difficulty = 1;
     }
 
+    private void Start()
+    {
+        player = PlayerMovement.Instance.gameObject;
+    }
+
     private void LateUpdate()
     {
         GetPlayerDistance();
-        CalculateScore();
+        score = Utils.CalculateScore(points, settings.pointsMultiplier, distance, settings.distanceMultiplier);
         UIManager.Instance.SetCurrentStats(score, distance, points);
-        
         UpdateDifficulty();
     }
 
@@ -102,13 +99,14 @@ public class GameManager : MonoBehaviour
 
     private void UpdateDifficulty()
     {
-        if (Difficulty > maxDifficulty)
+        if (Difficulty > settings.maxDifficulty)
         {
-            difficulty = maxDifficulty;
+            difficulty = settings.maxDifficulty;
             return;
         }
 
-        difficulty = Mathf.FloorToInt((distanceToIncreaseDifficulty + distance) / distanceToIncreaseDifficulty);
+        difficulty = Mathf.FloorToInt(
+            (settings.distanceToIncreaseDifficulty + distance) / settings.distanceToIncreaseDifficulty);
     }
 
     private void InstantiateSingleton()
@@ -124,10 +122,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // TODO: move to a static class
-    private void CalculateScore()
-    {
-        score = points * pointsMultiplier + Mathf.RoundToInt(distance * distanceMultiplier);
-    }
-    
 }

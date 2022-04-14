@@ -8,29 +8,17 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded => isGrounded;
     public bool IsCrouched => isCrouched;
-    public float MovementSpeed => forwardMovementSpeed;
     
-    private const float GRAVITY = -9.81f;
+    //TODO: verify for broken forward speed
+    [SerializeField] private PlayerMovementSettings settings;
     
-    [SerializeField] private float horizontalMovementSpeed = 20f;
-    [SerializeField] private float forwardMovementSpeed = 10f;
-    [SerializeField] private float forwardMovementSpeedCap = 50f;
-    [SerializeField] private float movementSpeedIncrease = 0.05f;
-    [SerializeField] private float jumpPower = 3f;
-    [SerializeField] private float jumpPowerMultiplier = 2f;
-    [SerializeField] private float crouchTime = 3f;
-    [SerializeField] private float crouchHeight = 0.5f;
-    [SerializeField] private float rotationAngle = 10f;
-    [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Transform mesh;
     [SerializeField] private Transform sparks;
-    [SerializeField] private float stepSoundTimer = 0.1f;
-    
-    [SerializeField] private float gravityMultiplier = 2f;
-    
     [SerializeField] private Transform groundCheck;
 
     [SerializeField] private LayerMask terrainLayerMask;
+    
+    private const float GRAVITY = -9.81f;
     
     private float gravity;
     private float originalStepOffset;
@@ -38,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     private float jumpHeight;
     private Vector3 velocity;
     private float horizontalMovement;
+    private float currentForwardSpeed;
+    
+    
     private bool isGrounded;
     private bool isCrouched;
     private bool shakedOnGround;
@@ -61,11 +52,12 @@ public class PlayerMovement : MonoBehaviour
         originalStepOffset = characterController.stepOffset;
         originalHeight = characterController.height;
 
+        currentForwardSpeed = settings.forwardMovementSpeed;
     }
 
     private void Start()
     {
-        jumpHeight = jumpPower;
+        jumpHeight = settings.jumpPower;
         UpdateGravity();
         StartCoroutine(StepSoundCoroutine());
     }
@@ -89,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StopMovement()
     {
-        forwardMovementSpeed = 0f;
+        currentForwardSpeed = 0f;
     }
 
     private void GetHorizontalInput()
@@ -101,8 +93,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         var playerTransform = transform;
-        var move = playerTransform.forward * forwardMovementSpeed + 
-                   playerTransform.right * horizontalMovement * horizontalMovementSpeed;
+        var move = playerTransform.forward * currentForwardSpeed + 
+                   playerTransform.right * horizontalMovement * settings.horizontalMovementSpeed;
         
         characterController.Move(move * Time.deltaTime);
     }
@@ -111,11 +103,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded && !shakedOnGround)
         {
-            if (Mathf.Abs(jumpHeight - (jumpPower * jumpPowerMultiplier)) < 0.1f)
-            {
-                AudioManager.Instance.PlaySound(AudioManager.FALL_SOUND);
-                // TODO: verifica sa fie in corutina
-            }
+            AudioManager.Instance.PlaySound(AudioManager.FALL_SOUND);
             CameraShake.Instance.Shake(CameraShakeType.Jump);
             shakedOnGround = true;
         }
@@ -128,8 +116,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void RotatePlayer()
     {
-        var desireRotation = Quaternion.Euler(Vector3.up * horizontalMovement * rotationAngle);
-        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, desireRotation, rotationSpeed * Time.deltaTime);
+        var desireRotation = Quaternion.Euler(Vector3.up * horizontalMovement * settings.rotationAngle);
+        
+        mesh.transform.rotation = Quaternion.Lerp(
+            mesh.transform.rotation, desireRotation, settings.rotationSpeed * Time.deltaTime);
     }
 
     // apply a jump impulse to the player velocity
@@ -161,10 +151,10 @@ public class PlayerMovement : MonoBehaviour
     // change the character controller height if it is crouching
     private void UpdateCrouch()
     {
-        if (isCrouched && Math.Abs(characterController.height - crouchHeight) > 0.01f)
+        if (isCrouched && Math.Abs(characterController.height - settings.crouchHeight) > 0.01f)
         {
-            characterController.center = Vector3.down * crouchHeight;
-            characterController.height = crouchHeight;
+            characterController.center = Vector3.down * settings.crouchHeight;
+            characterController.height = settings.crouchHeight;
             if (!sparks.gameObject.activeInHierarchy)
             {
                 sparks.gameObject.SetActive(true);
@@ -185,7 +175,6 @@ public class PlayerMovement : MonoBehaviour
     // a small negative number, so it doesn't levitate
     private void CheckGrounding()
     {
-        // TODO: change to a cube ???
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.3f, terrainLayerMask);
         if (isGrounded && velocity.y < 0)
         {
@@ -196,27 +185,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMovementSpeed()
     {
-        if (forwardMovementSpeed > forwardMovementSpeedCap)
+        if (currentForwardSpeed > settings.forwardMovementSpeedCap)
             return;
 
-        forwardMovementSpeed += movementSpeedIncrease * Time.deltaTime;
+        currentForwardSpeed += settings.movementSpeedIncrease * Time.deltaTime;
     }
 
-    private void UpdateGravity() => gravity = GRAVITY * gravityMultiplier;
+    private void UpdateGravity() => gravity = GRAVITY * settings.gravityMultiplier;
 
-    private IEnumerator IncreaseMovementSpeedCoroutine()
-    {
-        while (forwardMovementSpeed < forwardMovementSpeedCap)
-        {
-            forwardMovementSpeed += movementSpeedIncrease * Time.deltaTime;
-            yield return null;
-        }
-    }
-    
     [ContextMenu("Activate Jump Boost")]
     public IEnumerator JumpBoostCoroutine(float timer)
     {
-        jumpHeight = jumpPower * jumpPowerMultiplier;
+        jumpHeight = settings.jumpPower * settings.jumpPowerMultiplier;
         UIManager.Instance.SetJumpBoostSliderValue(1f);
         
         jumpBoostTime = 0f;
@@ -228,14 +208,14 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        jumpHeight = jumpPower;
+        jumpHeight = settings.jumpPower;
         UIManager.Instance.SetJumpBoostSliderValue(0f);
         jumpBoostTime = 0;
     }
 
     private IEnumerator StayInCrouchCoroutine()
     {
-        yield return new WaitForSeconds(crouchTime);
+        yield return new WaitForSeconds(settings.crouchTime);
         isCrouched = false;
     }
 
@@ -260,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 AudioManager.Instance.PlayRandomStepSound();
             }
-            yield return new WaitForSeconds(1/(stepSoundTimer * forwardMovementSpeed));
+            yield return new WaitForSeconds(1/(settings.stepSoundTimer * currentForwardSpeed));
         }
     }
 

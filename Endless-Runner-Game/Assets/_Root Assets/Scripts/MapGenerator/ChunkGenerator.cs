@@ -28,7 +28,6 @@ public class ChunkGenerator
         // for debug only
         if(debug) AppendTerrainType(position, chunkIndex);
         
-        // TODO: get a difficulty level to know how to spawn obstacles
         var difficulty = GameManager.Instance.Difficulty;
         var maxDifficulty = GameManager.Instance.MaxDifficulty;
 

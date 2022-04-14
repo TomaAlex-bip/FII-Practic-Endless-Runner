@@ -7,9 +7,6 @@ public class MapGenerator : MonoBehaviour
 {
     public static MapGenerator Instance { get; private set; }
 
-    // TODO: replace with singleton
-    [SerializeField] private Transform player;
-
     [SerializeField] private MapGeneratorData data;
 
     [SerializeField] private ChunkGenerator chunkGenerator;
@@ -20,6 +17,7 @@ public class MapGenerator : MonoBehaviour
     private readonly Dictionary<int, GameObject> visibleDecorations = 
         new Dictionary<int, GameObject>();
 
+    private Transform player;
     private float playerPosition;
     private float oldPlayerPosition;
 
@@ -32,8 +30,9 @@ public class MapGenerator : MonoBehaviour
 
     private void Start()
     {
-        
+        player = PlayerMovement.Instance.transform;
         oldPlayerPosition = player.position.z;
+        
         // initialize the start map
         InitializeSpawnChunks();
         UpdateChunks();
